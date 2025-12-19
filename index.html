@@ -11,7 +11,7 @@
 <meta name="description" content="UC Berkeley EECS 106A Introduction to Robotics - Student Project Showcase">
 <meta name="author" content="EECS 106A Students">
 <link rel="canonical" href="https://berkeleydrone.github.io/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cc3a682553568becc64ed888979b06b1973138d8e7f632de76a1cd52baccf615.css" integrity="sha256-zDpoJVNWi&#43;zGTtiIl5sGsZcxONjn9jLedqHNUrrM9hU=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2e27a68f48e08d63c60221d4b867670c9c69480e4c82079dd896e5d6ebe8784a.css" integrity="sha256-Liemj0jgjWPGAiHUuGdnDJxpSA5Mgged2Jbl1uvoeEo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://berkeleydrone.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://berkeleydrone.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://berkeleydrone.github.io/favicon-32x32.png">
@@ -200,15 +200,15 @@ body.home .main {
 .stages-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 32px;
   margin-top: 48px;
 }
 .stage-card {
   background: white;
   border-radius: 2rem;
   overflow: hidden;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+  border: 1px solid #E4E6EB;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
@@ -217,7 +217,7 @@ body.home .main {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.15) 100%);
   z-index: 1;
   pointer-events: none;
   opacity: 0;
@@ -450,10 +450,10 @@ body.home .main {
 .modal-detail-text .label { font-size: 0.7rem; color: #8A8D91; text-transform: uppercase; letter-spacing: 0.5px; }
 .modal-detail-text .value { font-size: 0.9rem; color: #1C1E21; font-weight: 600; margin-top: 2px; }
 @media (max-width: 1200px) {
-  .stages-grid { grid-template-columns: repeat(2, 1fr); }
+  .stages-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
 }
 @media (max-width: 768px) {
-  .stages-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .stages-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; gap: 24px; }
   .stages-section { padding: 60px 20px; }
   .video-modal { padding: 12px; }
   .modal-content { border-radius: 1.5rem; max-height: 95vh; }
@@ -952,7 +952,7 @@ window.addEventListener('scroll', function() {
       © 2025 UC Berkeley · EECS 106/206A Final Project
     </div>
     <div style="color: #BCC0C4; font-size: 0.8rem;">
-      Built by <a href="https://github.com/dongc1" target="_blank" style="color: #0668E1; text-decoration: none; font-weight: 500; transition: color 0.2s ease;" onmouseover="this.style.color='#5C7CFA'" onmouseout="this.style.color='#0668E1'">dongc1</a>
+      Built by <a href="https://dongc1.github.io/" target="_blank" style="color: #0668E1; text-decoration: none; font-weight: 500; transition: color 0.2s ease;" onmouseover="this.style.color='#5C7CFA'" onmouseout="this.style.color='#0668E1'">dongc1</a>
     </div>
   </div>
 </footer>
