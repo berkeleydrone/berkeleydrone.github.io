@@ -11,7 +11,7 @@
 <meta name="description" content="UC Berkeley EECS 106A Introduction to Robotics - Student Project Showcase">
 <meta name="author" content="EECS 106A Students">
 <link rel="canonical" href="https://berkeleydrone.github.io/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.40280c47ff06b39aa7b2d4e5b2d99d2d7e5868aafe19014ed21dbf8ab135f25d.css" integrity="sha256-QCgMR/8Gs5qnstTlstmdLX5YaKr&#43;GQFO0h2/irE18l0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cc3a682553568becc64ed888979b06b1973138d8e7f632de76a1cd52baccf615.css" integrity="sha256-zDpoJVNWi&#43;zGTtiIl5sGsZcxONjn9jLedqHNUrrM9hU=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://berkeleydrone.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://berkeleydrone.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://berkeleydrone.github.io/favicon-32x32.png">
@@ -92,7 +92,7 @@ for Drone Control EECS 106/206A Final Project — Vision-based autonomous drone 
                 </a>
             </li>
             <li>
-                <a href="https://berkeleydrone.github.io/about/" title="About">
+                <a href="https://berkeleydrone.github.io/#about" title="About">
                     <span>About</span>
                 </a>
             </li>
@@ -115,6 +115,31 @@ for Drone Control EECS 106/206A Final Project — Vision-based autonomous drone 
 .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; color: #1C1E21; }
 .section-description { font-size: 1.125rem; color: #65676B; max-width: 700px; margin: 0 auto; line-height: 1.7; }
 .workflow-section { background: #F8F9FA; padding: 100px 24px; margin-top: 60px; }
+.about-section { 
+  background: #F8F9FA; 
+  padding: 100px 24px 50px 24px;
+  margin: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+.about-section .team-grid {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+body.home .main {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+#about + * {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
 .workflow-container { max-width: 1100px; margin: 0 auto; }
 .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-top: 48px; }
 .workflow-card { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; }
@@ -133,8 +158,22 @@ for Drone Control EECS 106/206A Final Project — Vision-based autonomous drone 
 .video-container { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12); margin-top: 40px; }
 .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
 .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+.about-hero { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: -30px; padding-top: 200px; padding-bottom: 100px; padding-left: 40px; padding-right: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); text-align: center; color: white; margin-bottom: 80px; }
+.about-hero h1 { font-size: 2.5rem; font-weight: 800; margin: 0 0 16px 0; color: white; }
+.about-hero p { font-size: 1.125rem; opacity: 0.95; max-width: 600px; margin: 0 auto; color: white; }
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; max-width: 1100px; margin: 0 auto; }
+.team-card { background: white; border: 1px solid #E4E6EB; border-radius: 16px; padding: 32px; text-align: center; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.team-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+.team-avatar { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.5rem; font-weight: 700; overflow: hidden; }
+.team-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.team-name { font-size: 1.25rem; font-weight: 700; color: #1C1E21; margin-bottom: 8px; }
+.team-role { display: inline-block; background: #E7F3FF; color: #0668E1; padding: 6px 16px; border-radius: 20px; font-size: 0.8125rem; font-weight: 600; }
 @media (max-width: 768px) {
   .content-section, .workflow-section, .demo-section { padding: 60px 20px; }
+  .about-hero { padding: 80px 24px; }
+  .about-hero h1 { font-size: 2rem; }
+  .team-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px; }
+  .team-avatar { width: 100px; height: 100px; font-size: 2rem; }
 }
 </style>
 <div class="hero-section">
@@ -316,6 +355,20 @@ for Drone Control EECS 106/206A Final Project — Vision-based autonomous drone 
 </div>
 </div>
 </div>
+<div id="about" class="about-section">
+<div class="section-header">
+<span class="section-tag">OUR TEAM</span>
+<h2 class="section-title">Meet the Team</h2>
+<p class="section-description">EECS 106/206A Final Project Team at UC Berkeley</p>
+</div>
+<div class="team-grid">
+<div class="team-card"><div class="team-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><img src="https://berkeleydrone.github.io/images/people/george.png" alt="George Ma"></div><div class="team-name">George Ma</div><span class="team-role">PhD Student</span></div>
+<div class="team-card"><div class="team-avatar" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);"><img src="https://berkeleydrone.github.io/images/people/yiren.jpg" alt="Yiren Rong"></div><div class="team-name">Yiren Rong</div><span class="team-role" style="background: #F0E6FF; color: #7C3AED;">Master Student</span></div>
+<div class="team-card"><div class="team-avatar" style="background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);"><img src="https://berkeleydrone.github.io/images/people/jiayi.png" alt="Jiayi Zhu"></div><div class="team-name">Jiayi Zhu</div><span class="team-role" style="background: #E6F9ED; color: #00A341;">Undergrad Student</span></div>
+<div class="team-card"><div class="team-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">D</div><div class="team-name">Di Tian</div><span class="team-role" style="background: #F0E6FF; color: #7C3AED;">Master Student</span></div>
+<div class="team-card"><div class="team-avatar" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">M</div><div class="team-name">Mingliang Tang</div><span class="team-role">PhD Student</span></div>
+</div>
+</div>
 <script>
 window.addEventListener('scroll', function() {
   const nav = document.querySelector('.nav');
@@ -361,13 +414,14 @@ window.addEventListener('scroll', function() {
   background: #F8F9FA;
   border-top: 1px solid #E4E6EB;
   padding: 48px 24px;
-  margin-top: 80px;
+  margin-top: -50px;
   width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  z-index: 10;
 ">
   <div style="
     max-width: 1200px;
