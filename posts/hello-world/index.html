@@ -459,11 +459,113 @@
     margin: 0 auto;
     text-align: center;
   ">
-    <div style="color: #8A8D91; font-size: 0.875rem;">
+    <div style="color: #8A8D91; font-size: 0.875rem; margin-bottom: 8px;">
       © 2025 UC Berkeley · EECS 106/206A Final Project
+    </div>
+    <div style="color: #BCC0C4; font-size: 0.8rem;">
+      Built by <a href="https://github.com/dongc1" target="_blank" style="color: #0668E1; text-decoration: none; font-weight: 500; transition: color 0.2s ease;" onmouseover="this.style.color='#5C7CFA'" onmouseout="this.style.color='#0668E1'">dongc1</a>
     </div>
   </div>
 </footer>
+
+<button class="back-to-top" id="backToTop">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 4l-8 8h5v8h6v-8h5l-8-8z"/>
+  </svg>
+</button>
+
+<script>
+(function() {
+  const backToTop = document.getElementById('backToTop');
+  
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  });
+  
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+})();
+
+
+const videoData = [
+  {
+    id: 'LBzI1GDyFOo',
+    badge: 'Stage 1',
+    title: 'Target Acquisition',
+    desc: 'Initial marker detection and approach with aggressive gains for fast response. The drone quickly identifies the ArUco marker and begins its approach maneuver.',
+    phase: 'Acquisition',
+    control: 'High Gain PID',
+    goal: 'Fast Detection'
+  },
+  {
+    id: 'jF4QE1jB2JU',
+    badge: 'Stage 2',
+    title: 'Overshoot / Transient',
+    desc: 'Tuning PID gains to reduce overshoot and oscillation during transient phase. This stage focuses on dampening the initial aggressive response.',
+    phase: 'Transient',
+    control: 'Dampened PID',
+    goal: 'Reduce Oscillation'
+  },
+  {
+    id: 'G2pCyJFHyck',
+    badge: 'Stage 3',
+    title: 'Target Tracking',
+    desc: 'Stable hovering with smooth tracking. Low gains for minimal jitter. The drone maintains steady position relative to the marker.',
+    phase: 'Tracking',
+    control: 'Low Gain PID',
+    goal: 'Smooth Tracking'
+  },
+  {
+    id: 'WFyeybVqn1Q',
+    badge: 'Stage 4',
+    title: 'No Latency Tracking',
+    desc: 'Optimized system with minimal latency for real-time responsive control. Final tuned parameters for competition-ready performance.',
+    phase: 'Optimized',
+    control: 'Tuned PID',
+    goal: 'Zero Latency'
+  }
+];
+
+function openModal(index) {
+  const modal = document.getElementById('videoModal');
+  const video = document.getElementById('modalVideo');
+  const data = videoData[index];
+  
+  video.src = 'https://www.youtube.com/embed/' + data.id + '?autoplay=1';
+  document.getElementById('modalBadge').textContent = data.badge;
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('modalDesc').textContent = data.desc;
+  document.getElementById('modalPhase').textContent = data.phase;
+  document.getElementById('modalControl').textContent = data.control;
+  document.getElementById('modalGoal').textContent = data.goal;
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(event) {
+  const modal = document.getElementById('videoModal');
+  const video = document.getElementById('modalVideo');
+  
+  video.src = '';
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+});
+</script>
 </body>
 
 </html>
