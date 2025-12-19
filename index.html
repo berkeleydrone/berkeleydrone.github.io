@@ -33,8 +33,8 @@
 </noscript><meta property="og:url" content="https://berkeleydrone.github.io/">
   <meta property="og:site_name" content="EECS 106A Project Showcase">
   <meta property="og:title" content="EECS 106A Project Showcase">
-  <meta property="og:description" content=" ArUco Marker Tracking
-for Drone Control EECS 106/206A Final Project — Vision-based autonomous drone navigation using ArUco markers and ROS2">
+  <meta property="og:description" content=" A2RL: Autonomous
+Drone Racing EECS 106/206A Final Project — Preparing for the A2RL Autonomous Drone Championship in Abu Dhabi (2026-2027)">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
@@ -142,6 +142,128 @@ body.home .main {
 }
 .workflow-container { max-width: 1100px; margin: 0 auto; }
 .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-top: 48px; }
+.steps-scroll-wrapper {
+  width: 100%;
+  margin-top: 48px;
+  position: relative;
+}
+.steps-scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px 0 32px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #D1D5DB #F3F4F6;
+}
+.steps-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+.steps-scroll-container::-webkit-scrollbar-track {
+  background: #F3F4F6;
+  border-radius: 4px;
+}
+.steps-scroll-container::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 4px;
+}
+.steps-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+.steps-scroll-track {
+  display: flex;
+  gap: 20px;
+  padding-left: max(40px, calc((100vw - 1200px) / 2));
+  padding-right: max(40px, calc((100vw - 1200px) / 2));
+  width: max-content;
+}
+.step-card {
+  flex: 0 0 260px;
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.step-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+.step-card .workflow-icon { font-size: 2rem; margin-bottom: 12px; }
+.step-card .workflow-title { font-size: 1.1rem; font-weight: 700; color: #1C1E21; margin-bottom: 10px; }
+.step-card .workflow-content { color: #65676B; font-size: 0.875rem; line-height: 1.5; }
+.step-card .workflow-list { margin-top: 8px; }
+.step-card .workflow-list li { padding: 4px 0; font-size: 0.8125rem; }
+@media (max-width: 768px) {
+  .steps-scroll-track { padding-left: 20px; }
+  .step-card { flex: 0 0 240px; padding: 24px; }
+}
+.stages-section { padding: 100px 24px; max-width: 1400px; margin: 0 auto; }
+.stages-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.stage-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+}
+.stage-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+}
+.stage-video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.stage-video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.stage-info {
+  padding: 20px;
+}
+.stage-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #0668E1 0%, #764ba2 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+.stage-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1C1E21;
+  margin: 0;
+  line-height: 1.4;
+}
+.stage-desc {
+  font-size: 0.875rem;
+  color: #65676B;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+@media (max-width: 1200px) {
+  .stages-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .stages-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .stages-section { padding: 60px 20px; }
+}
 .workflow-card { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; }
 .workflow-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); }
 .workflow-icon { font-size: 3rem; margin-bottom: 16px; }
@@ -179,8 +301,8 @@ body.home .main {
 <div class="hero-section">
 <video class="hero-video" autoplay muted loop playsinline><source src="vedio/hero.mp4" type="video/mp4"></video>
 <div class="hero-content">
-<h1 class="hero-title">ArUco Marker Tracking<br>for Drone Control</h1>
-<p class="hero-subtitle">EECS 106/206A Final Project — Vision-based autonomous drone navigation using ArUco markers and ROS2</p>
+<h1 class="hero-title">A2RL: Autonomous<br>Drone Racing</h1>
+<p class="hero-subtitle">EECS 106/206A Final Project — Preparing for the A2RL Autonomous Drone Championship in Abu Dhabi (2026-2027)</p>
 <div class="hero-buttons">
 <a href="#overview" class="btn">Learn More</a>
 <a href="#demo" class="btn btn-outline">Watch Demo</a>
@@ -194,8 +316,8 @@ body.home .main {
 <div id="overview" class="content-section">
 <div class="section-header">
 <span class="section-tag">PROJECT OVERVIEW</span>
-<h2 class="section-title">Vision-Based Drone Control</h2>
-<p class="section-description">We developed an autonomous drone system that tracks and follows ArUco markers using computer vision, ROS2, and custom control algorithms. The system achieves real-time marker detection and smooth trajectory planning.</p>
+<h2 class="section-title">A2RL Autonomous Drone Racing</h2>
+<p class="section-description">The A2RL Autonomous Drone Championship is a multi-year drone racing competition hosted in Abu Dhabi. This project is part of our preparation process for the third competition year (2026-2027), developing vision-based autonomous navigation using ArUco markers and ROS2.</p>
 </div>
 <div class="highlight-grid">
 <div class="highlight-card">
@@ -203,12 +325,12 @@ body.home .main {
 <div class="highlight-label">Detection Rate</div>
 </div>
 <div class="highlight-card">
-<div class="highlight-value">±2mm</div>
-<div class="highlight-label">Positioning Accuracy</div>
+<div class="highlight-value">3 Steps</div>
+<div class="highlight-label">Development Workflow</div>
 </div>
 <div class="highlight-card">
-<div class="highlight-value">95%</div>
-<div class="highlight-label">Tracking Success</div>
+<div class="highlight-value">2026</div>
+<div class="highlight-label">Competition Year</div>
 </div>
 </div>
 </div>
@@ -216,47 +338,64 @@ body.home .main {
 <div class="workflow-container">
 <div class="section-header">
 <span class="section-tag">SYSTEM ARCHITECTURE</span>
-<h2 class="section-title">Three-Stage Pipeline</h2>
-<p class="section-description">Our system uses a modular architecture with three main components: Perception, Planning, and Control</p>
+<h2 class="section-title">Sensing - ArUco Marker Tracking</h2>
+<p class="section-description">Our system uses a four-stage pipeline for autonomous drone control through visual tracking</p>
 </div>
-<div class="workflow-grid">
-<div class="workflow-card">
+</div>
+<div class="steps-scroll-wrapper">
+<div class="steps-scroll-container">
+<div class="steps-scroll-track">
+<div class="step-card">
 <div class="workflow-icon">📷</div>
-<h3 class="workflow-title">Perception</h3>
+<h3 class="workflow-title">Step 1: Align with Marker</h3>
 <div class="workflow-content">
-<p><strong>ArUco Detection Node</strong></p>
+<p><strong>Camera Detection</strong></p>
 <ul class="workflow-list">
-<li>Subscribe: <code>/arducam/image_raw</code></li>
-<li>Process: <code>cv2.aruco</code> detection</li>
-<li>Detect 4 corners + center</li>
-<li>Publish: <code>/aruco_detector/marker_pixel</code></li>
+<li>Monocular Camera (Arducam)</li>
+<li>Low latency processing</li>
+<li>Real-time marker detection</li>
+<li>Align with marker center</li>
 </ul>
 </div>
 </div>
-<div class="workflow-card">
-<div class="workflow-icon">🎯</div>
-<h3 class="workflow-title">Planning</h3>
+<div class="step-card">
+<div class="workflow-icon">📡</div>
+<h3 class="workflow-title">Step 2: Publish Coordinates</h3>
 <div class="workflow-content">
-<p><strong>Velocity Computation</strong></p>
+<p><strong>ArUco Node</strong></p>
 <ul class="workflow-list">
-<li>Calculate pixel x/y error</li>
-<li>Error = marker_center - image_center</li>
-<li>Compute v_y, v_z (v_x = 0)</li>
+<li>Publish marker pixel coords</li>
+<li>Subscribe: <code>/arducam/image_raw</code></li>
+<li>Process: <code>cv2.aruco</code></li>
+<li>Publish: <code>/marker_pixel</code></li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="workflow-icon">📐</div>
+<h3 class="workflow-title">Step 3: Compute Error</h3>
+<div class="workflow-content">
+<p><strong>Error Calculation</strong></p>
+<ul class="workflow-list">
+<li>Calculate x/y pixel error</li>
+<li>error = marker - image_center</li>
+<li>Feed into planning node</li>
+<li>Real-time error tracking</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="workflow-icon">🚁</div>
+<h3 class="workflow-title">Step 4: Velocity Output</h3>
+<div class="workflow-content">
+<p><strong>Control Command</strong></p>
+<ul class="workflow-list">
+<li>Planner outputs velocities</li>
+<li>Correct positioning error</li>
+<li>Smooth trajectory</li>
 <li>Publish: <code>/desired_pose</code></li>
 </ul>
 </div>
-</div>
-<div class="workflow-card">
-<div class="workflow-icon">🎮</div>
-<h3 class="workflow-title">Control</h3>
-<div class="workflow-content">
-<p><strong>RC Command Mapping</strong></p>
-<ul class="workflow-list">
-<li>Map velocity → RC commands</li>
-<li>[roll, pitch, throttle, yaw]</li>
-<li>Range: 1000-2000 (neutral: 1500)</li>
-<li>Publish: <code>/rc/override</code></li>
-</ul>
 </div>
 </div>
 </div>
@@ -265,7 +404,7 @@ body.home .main {
 <div id="implementation" class="content-section">
 <div class="section-header">
 <span class="section-tag">IMPLEMENTATION</span>
-<h2 class="section-title">Technical Approach</h2>
+<h2 class="section-title">Hardware & Development</h2>
 </div>
 <div class="workflow-grid">
 <div class="workflow-card">
@@ -273,9 +412,9 @@ body.home .main {
 <h3 class="workflow-title">Hardware</h3>
 <div class="workflow-content">
 <ul class="workflow-list">
-<li>ArduCam camera module</li>
-<li>Betaflight flight controller</li>
-<li>Custom drone frame</li>
+<li>Jetson Xavier (compute unit)</li>
+<li>Monocular Camera (Arducam)</li>
+<li>Flight Controller (Foxeer H7 FC)</li>
 <li>Onboard IMU sensors</li>
 </ul>
 </div>
@@ -286,23 +425,22 @@ body.home .main {
 <div class="workflow-content">
 <p><strong>Kalibr & Allan Variance</strong></p>
 <ul class="workflow-list">
-<li>Pinhole camera model</li>
-<li>Intrinsics matrix K</li>
-<li>Distortion parameters</li>
+<li>Camera calibration</li>
+<li>IMU calibration</li>
 <li>Camera-IMU extrinsics</li>
+<li>Sensor synchronization</li>
 </ul>
 </div>
 </div>
 <div class="workflow-card">
-<div class="workflow-icon">📐</div>
-<h3 class="workflow-title">Control Algorithm</h3>
+<div class="workflow-icon">📋</div>
+<h3 class="workflow-title">Development Workflow</h3>
 <div class="workflow-content">
-<p><strong>PID-based velocity control</strong></p>
+<p><strong>3-Step Process</strong></p>
 <ul class="workflow-list">
-<li>Z_vel = gain × y_error</li>
-<li>Y_vel = gain × x_error</li>
-<li>X_vel = 0 (hover mode)</li>
-<li>RC_yaw = 1500 + gain × v_y</li>
+<li>Step 1: Hardware setup & testing</li>
+<li>Step 2: Sensor calibration</li>
+<li>Step 3: Task implementation</li>
 </ul>
 </div>
 </div>
@@ -311,47 +449,84 @@ body.home .main {
 <div class="workflow-section">
 <div class="workflow-container">
 <div class="section-header">
-<span class="section-tag">OPTIMIZATION</span>
-<h2 class="section-title">Three-Phase Improvement</h2>
-<p class="section-description">We iteratively refined our control system to minimize overshoot and improve tracking stability</p>
+<span class="section-tag">CONTROL SYSTEM</span>
+<h2 class="section-title">Flight Control & Planning</h2>
+<p class="section-description">Jetson Xavier runs the main flight stack with planning, controller, and perception modules</p>
 </div>
 <div class="workflow-grid">
 <div class="workflow-card">
-<div class="workflow-icon">🎯</div>
-<h3 class="workflow-title">Phase 1</h3>
+<div class="workflow-icon">🧠</div>
+<h3 class="workflow-title">Planning Module</h3>
 <div class="workflow-content">
-<p><strong>Target Acquisition</strong></p>
-<p>Initial marker detection and approach. Aggressive gains for fast response.</p>
+<p><strong>Path Generation</strong></p>
+<p>Computes optimal trajectories based on marker positions and desired velocities.</p>
 </div>
 </div>
 <div class="workflow-card">
-<div class="workflow-icon">📊</div>
-<h3 class="workflow-title">Phase 2</h3>
+<div class="workflow-icon">🎮</div>
+<h3 class="workflow-title">Controller Module</h3>
 <div class="workflow-content">
-<p><strong>Parameter Optimization</strong></p>
-<p>Tune PID gains to reduce overshoot and oscillation during transient.</p>
+<p><strong>Flight Control</strong></p>
+<p>Maps velocities to RC commands (roll, pitch, throttle, yaw) for the flight controller.</p>
 </div>
 </div>
 <div class="workflow-card">
-<div class="workflow-icon">✅</div>
-<h3 class="workflow-title">Phase 3</h3>
+<div class="workflow-icon">👁️</div>
+<h3 class="workflow-title">Perception Module</h3>
 <div class="workflow-content">
-<p><strong>Target Tracking</strong></p>
-<p>Stable hovering with smooth tracking. Low gains for minimal jitter.</p>
+<p><strong>Visual Processing</strong></p>
+<p>ArUco marker detection and tracking using monocular camera with low latency.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="demo" class="demo-section">
+<div id="demo" class="stages-section">
 <div class="section-header">
 <span class="section-tag">DEMONSTRATION</span>
-<h2 class="section-title">See It In Action</h2>
-<p class="section-description">Watch our drone autonomously track and follow ArUco markers in real-time</p>
+<h2 class="section-title">Four-Phase Control System</h2>
+<p class="section-description">Watch our drone progress through different tracking phases, from initial acquisition to smooth tracking</p>
 </div>
-<div class="video-container">
-<div class="video-wrapper">
-<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Project Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="stages-grid">
+<div class="stage-card">
+<div class="stage-video-wrapper">
+<iframe src="https://www.youtube.com/embed/LBzI1GDyFOo" title="Stage 1: Target Acquisition" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="stage-info">
+<span class="stage-badge">STAGE 1</span>
+<h3 class="stage-title">Target Acquisition</h3>
+<p class="stage-desc">Initial marker detection and approach with aggressive gains for fast response.</p>
+</div>
+</div>
+<div class="stage-card">
+<div class="stage-video-wrapper">
+<iframe src="https://www.youtube.com/embed/jF4QE1jB2JU" title="Stage 2: Overshoot / Transient" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="stage-info">
+<span class="stage-badge">STAGE 2</span>
+<h3 class="stage-title">Overshoot / Transient</h3>
+<p class="stage-desc">Tuning PID gains to reduce overshoot and oscillation during transient phase.</p>
+</div>
+</div>
+<div class="stage-card">
+<div class="stage-video-wrapper">
+<iframe src="https://www.youtube.com/embed/G2pCyJFHyck" title="Stage 3: Target Tracking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="stage-info">
+<span class="stage-badge">STAGE 3</span>
+<h3 class="stage-title">Target Tracking</h3>
+<p class="stage-desc">Stable hovering with smooth tracking. Low gains for minimal jitter.</p>
+</div>
+</div>
+<div class="stage-card">
+<div class="stage-video-wrapper">
+<iframe src="https://www.youtube.com/embed/WFyeybVqn1Q" title="Stage 4: No Latency Tracking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="stage-info">
+<span class="stage-badge">STAGE 4</span>
+<h3 class="stage-title">No Latency Tracking</h3>
+<p class="stage-desc">Optimized system with minimal latency for real-time responsive control.</p>
+</div>
 </div>
 </div>
 </div>
@@ -370,6 +545,7 @@ body.home .main {
 </div>
 </div>
 <script>
+// Navigation scroll effect
 window.addEventListener('scroll', function() {
   const nav = document.querySelector('.nav');
   if (window.scrollY > 100) {
@@ -414,7 +590,7 @@ window.addEventListener('scroll', function() {
   background: #F8F9FA;
   border-top: 1px solid #E4E6EB;
   padding: 48px 24px;
-  margin-top: -50px;
+  margin-top: -30px;
   width: 100vw;
   position: relative;
   left: 50%;
