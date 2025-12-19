@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Manipulation on EECS 106A Project Showcase</title>
-    <link>http://localhost:51012/cosmos-eecs106a.github.io/tags/manipulation/</link>
+    <link>http://localhost:1313/tags/manipulation/</link>
     <description>Recent content in Manipulation on EECS 106A Project Showcase</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Dec 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:51012/cosmos-eecs106a.github.io/tags/manipulation/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/manipulation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>UR5e Cube Grasp Project</title>
-      <link>http://localhost:51012/cosmos-eecs106a.github.io/posts/hello-world/</link>
+      <link>http://localhost:1313/posts/hello-world/</link>
       <pubDate>Tue, 10 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:51012/cosmos-eecs106a.github.io/posts/hello-world/</guid>
+      <guid>http://localhost:1313/posts/hello-world/</guid>
       <description>A robotic manipulation project using the UR5e arm and Intel RealSense for visual servoing and cube grasping.</description>
     </item>
   </channel>
