@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>UR5e Cube Grasp Project | EECS 106A Project Showcase</title>
 <meta name="keywords" content="manipulation, computer-vision, ros2">
 <meta name="description" content="A robotic manipulation project using the UR5e arm and Intel RealSense for visual servoing and cube grasping.">
 <meta name="author" content="EECS 106A Students">
-<link rel="canonical" href="https://berkeleydrone.github.io/posts/hello-world/">
+<link rel="canonical" href="http://localhost:1313/posts/hello-world/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.588ba43c1c9efa82d61d120adfb15e94e7678a83f3c9f673f6f045563e60cc4b.css" integrity="sha256-WIukPBye&#43;oLWHRIK37FelOdnioPzyfZz9vBFVj5gzEs=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://berkeleydrone.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://berkeleydrone.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://berkeleydrone.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://berkeleydrone.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://berkeleydrone.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://berkeleydrone.github.io/posts/hello-world/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/hello-world/">
 <noscript>
     <style>
         #theme-toggle,
@@ -27,76 +27,7 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://berkeleydrone.github.io/posts/hello-world/">
-  <meta property="og:site_name" content="EECS 106A Project Showcase">
-  <meta property="og:title" content="UR5e Cube Grasp Project">
-  <meta property="og:description" content="A robotic manipulation project using the UR5e arm and Intel RealSense for visual servoing and cube grasping.">
-  <meta property="og:locale" content="en-us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-12-10T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-12-10T00:00:00+00:00">
-    <meta property="article:tag" content="Manipulation">
-    <meta property="article:tag" content="Computer-Vision">
-    <meta property="article:tag" content="Ros2">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UR5e Cube Grasp Project">
-<meta name="twitter:description" content="A robotic manipulation project using the UR5e arm and Intel RealSense for visual servoing and cube grasping.">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://berkeleydrone.github.io/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "UR5e Cube Grasp Project",
-      "item": "https://berkeleydrone.github.io/posts/hello-world/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "UR5e Cube Grasp Project",
-  "name": "UR5e Cube Grasp Project",
-  "description": "A robotic manipulation project using the UR5e arm and Intel RealSense for visual servoing and cube grasping.",
-  "keywords": [
-    "manipulation", "computer-vision", "ros2"
-  ],
-  "articleBody": " 🤖 UR5e Cube Grasp Robotic Manipulation with Visual Feedback\n📋 Project Overview This project demonstrates autonomous robotic manipulation using the UR5e robotic arm combined with an Intel RealSense D435 depth camera for visual feedback. The system can identify, locate, and grasp colored cubes placed on a tabletop.\n🎯 Accuracy ±2mm positioning ⚡ Speed 3 sec per grasp ✅ Success Rate 95% grasp success 👥 Team Members A Alice Chen Perception Lead B Bob Wang Controls Lead C Carol Zhang Integration Lead 🔧 Technical Approach Perception Pipeline The system uses a 3-stage perception pipeline:\nColor Segmentation — HSV-based color filtering to isolate cube pixels Depth Estimation — Point cloud processing to determine 3D position Pose Estimation — PCA-based orientation detection for grasp planning def detect_cube(rgb_image, depth_image): # Convert to HSV and create mask hsv = cv2.cvtColor(rgb_image, cv2.COLOR_BGR2HSV) mask = cv2.inRange(hsv, lower_bound, upper_bound) # Find centroid moments = cv2.moments(mask) cx = int(moments['m10'] / moments['m00']) cy = int(moments['m01'] / moments['m00']) # Get 3D position from depth depth = depth_image[cy, cx] point_3d = camera_to_world(cx, cy, depth) return point_3d Motion Planning We implemented RRT-Connect for collision-free path planning and used MoveIt2 for trajectory execution. The gripper approach is computed using the cube’s estimated pose to ensure proper alignment.\n💡 Key Insight Using a pre-grasp pose 5cm above the target significantly improved grasp success by allowing the controller to correct for small positioning errors during the final approach. 📊 Results Our system achieved the following performance metrics:\nMetric Value Grasp Success Rate 95.2% Average Cycle Time 8.3 seconds Position Accuracy ±2.1 mm Orientation Error ±3.5° 🎬 Demo Video 🔗 Resources 📁 GitHub Repository 📄 Project Report 🎞️ Presentation Slides ",
-  "wordCount" : "273",
-  "inLanguage": "en",
-  "datePublished": "2024-12-10T00:00:00Z",
-  "dateModified": "2024-12-10T00:00:00Z",
-  "author":{
-    "@type": "Person",
-    "name": "EECS 106A Students"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://berkeleydrone.github.io/posts/hello-world/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "EECS 106A Project Showcase",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://berkeleydrone.github.io/favicon.ico"
-    }
-  }
-}
-</script>
+</noscript>
 </head>
 
 <body class="" id="top">
@@ -104,43 +35,43 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://berkeleydrone.github.io/" accesskey="h" title="EECS 106A Project Showcase (Alt + H)">EECS 106A Project Showcase</a>
+            <a href="http://localhost:1313/" accesskey="h" title="EECS 106A Project Showcase (Alt + H)">EECS 106A Project Showcase</a>
             <div class="logo-switches">
             </div>
         </div>
         <ul id="menu">
             <li>
-                <a href="https://berkeleydrone.github.io/" title="Home">
+                <a href="http://localhost:1313/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="https://berkeleydrone.github.io/#overview" title="Overview">
+                <a href="http://localhost:1313/#overview" title="Overview">
                     <span>Overview</span>
                 </a>
             </li>
             <li>
-                <a href="https://berkeleydrone.github.io/#architecture" title="Architecture">
+                <a href="http://localhost:1313/#architecture" title="Architecture">
                     <span>Architecture</span>
                 </a>
             </li>
             <li>
-                <a href="https://berkeleydrone.github.io/#implementation" title="Hardware">
+                <a href="http://localhost:1313/#implementation" title="Hardware">
                     <span>Hardware</span>
                 </a>
             </li>
             <li>
-                <a href="https://berkeleydrone.github.io/#documentation" title="Software">
+                <a href="http://localhost:1313/#documentation" title="Software">
                     <span>Software</span>
                 </a>
             </li>
             <li>
-                <a href="https://berkeleydrone.github.io/#demo" title="Demo">
+                <a href="http://localhost:1313/#demo" title="Demo">
                     <span>Demo</span>
                 </a>
             </li>
             <li>
-                <a href="https://berkeleydrone.github.io/#about" title="About">
+                <a href="http://localhost:1313/#about" title="About">
                     <span>About</span>
                 </a>
             </li>
@@ -151,7 +82,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://berkeleydrone.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://berkeleydrone.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       UR5e Cube Grasp Project
     </h1>
@@ -438,9 +369,9 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://berkeleydrone.github.io/tags/manipulation/">Manipulation</a></li>
-      <li><a href="https://berkeleydrone.github.io/tags/computer-vision/">Computer-Vision</a></li>
-      <li><a href="https://berkeleydrone.github.io/tags/ros2/">Ros2</a></li>
+      <li><a href="http://localhost:1313/tags/manipulation/">Manipulation</a></li>
+      <li><a href="http://localhost:1313/tags/computer-vision/">Computer-Vision</a></li>
+      <li><a href="http://localhost:1313/tags/ros2/">Ros2</a></li>
     </ul>
 
   </footer>
