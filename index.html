@@ -728,7 +728,7 @@ body.home .main {
 .doc-modal.active { opacity: 1; visibility: visible; }
 .doc-modal-content {
   background: white;
-  border-radius: 1.5rem;
+  border-radius: 2rem;
   max-width: 900px;
   width: 100%;
   max-height: 90vh;
@@ -736,55 +736,8 @@ body.home .main {
   transform: scale(0.9) translateY(20px);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 25px 80px rgba(0,0,0,0.3);
-  display: flex;
-  flex-direction: column;
 }
 .doc-modal.active .doc-modal-content { transform: scale(1) translateY(0); }
-.doc-modal-header {
-  position: relative;
-  flex-shrink: 0;
-}
-.doc-modal-header-bg {
-  height: 200px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-.doc-modal-header-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
-}
-.doc-modal-header-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 24px 32px;
-  color: white;
-  z-index: 1;
-}
-.doc-modal-tag {
-  display: inline-block;
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(8px);
-  color: white;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: 20px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.doc-modal-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0;
-  line-height: 1.2;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
 .doc-modal-close {
   position: absolute;
   top: 16px;
@@ -792,7 +745,7 @@ body.home .main {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.5);
   backdrop-filter: blur(8px);
   border: none;
   cursor: pointer;
@@ -800,30 +753,141 @@ body.home .main {
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  z-index: 2;
+  z-index: 10;
 }
-.doc-modal-close:hover { background: rgba(255,255,255,0.3); transform: rotate(90deg); }
+.doc-modal-close:hover { background: rgba(0,0,0,0.7); transform: rotate(90deg); }
 .doc-modal-close svg { width: 20px; height: 20px; stroke: white; }
-.doc-modal-body {
-  padding: 32px;
+.doc-modal-scroll {
   overflow-y: auto;
-  flex: 1;
-  min-height: 0;
+  max-height: 90vh;
+  padding: 32px 48px;
 }
-.doc-modal-body::-webkit-scrollbar { width: 8px; }
-.doc-modal-body::-webkit-scrollbar-track { background: #F0F2F5; }
-.doc-modal-body::-webkit-scrollbar-thumb { background: #C4C6CA; border-radius: 4px; }
-.doc-content h3 { font-size: 1.25rem; font-weight: 700; color: #1C1E21; margin: 24px 0 12px 0; }
-.doc-content h3:first-child { margin-top: 0; }
-.doc-content p { font-size: 0.95rem; color: #65676B; line-height: 1.7; margin: 0 0 16px 0; }
-.doc-content ul { margin: 0 0 16px 0; padding-left: 20px; }
-.doc-content li { font-size: 0.95rem; color: #65676B; line-height: 1.7; margin-bottom: 8px; }
-.doc-content img { width: 100%; border-radius: 12px; margin: 16px 0; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-.doc-content .img-caption { font-size: 0.8rem; color: #8A8D91; text-align: center; margin-top: -8px; margin-bottom: 16px; }
-.doc-content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.875rem; }
-.doc-content th, .doc-content td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #E4E6EB; }
-.doc-content th { background: #F8F9FA; font-weight: 600; color: #1C1E21; }
-.doc-content td { color: #65676B; }
+.doc-modal-scroll::-webkit-scrollbar { width: 8px; }
+.doc-modal-scroll::-webkit-scrollbar-track { background: #F0F2F5; }
+.doc-modal-scroll::-webkit-scrollbar-thumb { background: #C4C6CA; border-radius: 4px; }
+.doc-modal-intro {
+  margin-bottom: 24px;
+}
+.doc-modal-tag {
+  display: inline-block;
+  background: #E7F3FF;
+  color: #0668E1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.doc-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1C1E21;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+.doc-modal-subtitle {
+  font-size: 1.125rem;
+  color: #65676B;
+  margin: 0;
+}
+.doc-modal-image {
+  width: 100%;
+  height: 280px;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 32px;
+  background: #F0F2F5;
+}
+.doc-modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.doc-content-section {
+  padding-top: 32px;
+  border-top: 1px solid #E4E6EB;
+  width: 100%;
+}
+.doc-content {
+  width: 100%;
+}
+.doc-content h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1C1E21;
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.doc-content h3:not(:first-child) {
+  margin-top: 28px;
+}
+.doc-content p { font-size: 0.9375rem; color: #65676B; line-height: 1.7; margin: 0 0 16px 0; }
+.doc-content ul { margin: 0 0 20px 0; padding: 0; list-style: none; }
+.doc-content li {
+  font-size: 0.9375rem;
+  color: #65676B;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  padding-left: 24px;
+  position: relative;
+}
+.doc-content li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  background: #0668E1;
+  border-radius: 50%;
+}
+.doc-content img {
+  width: 100%;
+  border-radius: 12px;
+  margin: 16px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.doc-content .img-caption { font-size: 0.8125rem; color: #8A8D91; text-align: center; margin-top: -8px; margin-bottom: 20px; font-style: italic; }
+.doc-content table {
+  width: 100% !important;
+  min-width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 24px 0;
+  font-size: 0.875rem;
+  border: 1px solid #E4E6EB;
+  background: white;
+  display: table;
+  table-layout: auto;
+}
+.doc-content tr {
+  display: table-row;
+  width: 100%;
+}
+.doc-content th, .doc-content td { 
+  padding: 12px 16px; 
+  text-align: left; 
+  border: 1px solid #E4E6EB;
+  display: table-cell;
+}
+.doc-content th { 
+  font-weight: 600; 
+  color: #1C1E21; 
+  font-size: 0.8125rem; 
+  text-transform: uppercase; 
+  letter-spacing: 0.5px; 
+  background: #F8F9FA !important; 
+}
+.doc-content td { 
+  color: #65676B; 
+  background: white;
+}
+.doc-content tr:nth-child(even) td { background: #FAFBFC !important; }
+.doc-content tr:hover td { background: #F0F2F5 !important; }
+.doc-content tr:first-child th { background: #F8F9FA !important; }
 @media (max-width: 1200px) {
   .docs-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -831,10 +895,10 @@ body.home .main {
   .docs-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
   .docs-section { padding: 60px 20px; }
   .doc-modal { padding: 12px; }
-  .doc-modal-content { max-height: 95vh; }
-  .doc-modal-header-bg { height: 150px; }
+  .doc-modal-content { max-height: 95vh; border-radius: 1.5rem; }
+  .doc-modal-scroll { padding: 24px; }
   .doc-modal-title { font-size: 1.5rem; }
-  .doc-modal-body { padding: 24px; }
+  .doc-modal-image { height: 200px; }
 }
 </style>
 <div class="hero-section">
@@ -1068,18 +1132,21 @@ body.home .main {
 </div>
 <div class="doc-modal" id="docModal" onclick="closeDocModal(event)">
 <div class="doc-modal-content" onclick="event.stopPropagation()">
-<div class="doc-modal-header">
-<div class="doc-modal-header-bg" id="docModalBg"></div>
-<div class="doc-modal-header-content">
-<span class="doc-modal-tag" id="docModalTag">Hardware</span>
-<h2 class="doc-modal-title" id="docModalTitle">Drone Frame & Components</h2>
-</div>
 <button class="doc-modal-close" onclick="closeDocModal(event)">
 <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
 </button>
+<div class="doc-modal-scroll">
+<div class="doc-modal-intro">
+<span class="doc-modal-tag" id="docModalTag">Hardware</span>
+<h2 class="doc-modal-title" id="docModalTitle">Drone Frame & Components</h2>
+<p class="doc-modal-subtitle" id="docModalSubtitle">Technical documentation</p>
 </div>
-<div class="doc-modal-body">
+<div class="doc-modal-image" id="docModalImageWrapper">
+<img id="docModalImage" src="" alt="">
+</div>
+<div class="doc-content-section">
 <div class="doc-content" id="docModalContent"></div>
+</div>
 </div>
 </div>
 </div>
@@ -1419,6 +1486,7 @@ const docData = [
   {
     tag: 'Hardware',
     title: 'Drone Frame & Components',
+    subtitle: 'A2RL Racing Drone Platform',
     bg: 'https://berkeleydrone.github.io/images/docs/drone_parts.png',
     content: `
       <h3>Overview</h3>
@@ -1462,6 +1530,7 @@ const docData = [
   {
     tag: 'Calibration',
     title: 'Sensor Calibration',
+    subtitle: 'Camera & IMU Calibration Procedures',
     bg: 'https://berkeleydrone.github.io/images/docs/calibrated_images.png',
     content: `
       <h3>Overview</h3>
@@ -1499,6 +1568,7 @@ const docData = [
   {
     tag: 'Perception',
     title: 'Perception Module',
+    subtitle: 'ArUco Marker Detection & Tracking',
     bg: 'https://berkeleydrone.github.io/images/docs/pipeline_diagram.png',
     content: `
       <h3>Overview</h3>
@@ -1536,6 +1606,7 @@ const docData = [
   {
     tag: 'Planning',
     title: 'Planning Module',
+    subtitle: 'Error Computation & Trajectory Planning',
     bg: 'https://berkeleydrone.github.io/images/docs/Drone_frame_image.png',
     content: `
       <h3>Overview</h3>
@@ -1571,6 +1642,7 @@ const docData = [
   {
     tag: 'Control',
     title: 'Control Module',
+    subtitle: 'PID Controller & Velocity Commands',
     bg: 'https://berkeleydrone.github.io/images/docs/accel_noise.png',
     content: `
       <h3>Overview</h3>
@@ -1619,6 +1691,7 @@ const docData = [
   {
     tag: 'Workflow',
     title: 'Development Workflow',
+    subtitle: 'Software Development & Debugging Guide',
     bg: 'https://berkeleydrone.github.io/images/docs/gyro_noise.png',
     content: `
       <h3>Overview</h3>
@@ -1668,12 +1741,14 @@ const docData = [
 function openDocModal(index) {
   const modal = document.getElementById('docModal');
   const data = docData[index];
-  
-  document.getElementById('docModalBg').style.backgroundImage = 'url(' + data.bg + ')';
+
   document.getElementById('docModalTag').textContent = data.tag;
   document.getElementById('docModalTitle').textContent = data.title;
+  document.getElementById('docModalSubtitle').textContent = data.subtitle || 'Technical Documentation';
+  document.getElementById('docModalImage').src = data.bg;
+  document.getElementById('docModalImage').alt = data.title;
   document.getElementById('docModalContent').innerHTML = data.content;
-  
+
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }

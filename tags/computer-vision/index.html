@@ -240,6 +240,7 @@ const docData = [
   {
     tag: 'Hardware',
     title: 'Drone Frame & Components',
+    subtitle: 'A2RL Racing Drone Platform',
     bg: 'https://berkeleydrone.github.io/images/docs/drone_parts.png',
     content: `
       <h3>Overview</h3>
@@ -283,6 +284,7 @@ const docData = [
   {
     tag: 'Calibration',
     title: 'Sensor Calibration',
+    subtitle: 'Camera & IMU Calibration Procedures',
     bg: 'https://berkeleydrone.github.io/images/docs/calibrated_images.png',
     content: `
       <h3>Overview</h3>
@@ -320,6 +322,7 @@ const docData = [
   {
     tag: 'Perception',
     title: 'Perception Module',
+    subtitle: 'ArUco Marker Detection & Tracking',
     bg: 'https://berkeleydrone.github.io/images/docs/pipeline_diagram.png',
     content: `
       <h3>Overview</h3>
@@ -357,6 +360,7 @@ const docData = [
   {
     tag: 'Planning',
     title: 'Planning Module',
+    subtitle: 'Error Computation & Trajectory Planning',
     bg: 'https://berkeleydrone.github.io/images/docs/Drone_frame_image.png',
     content: `
       <h3>Overview</h3>
@@ -392,6 +396,7 @@ const docData = [
   {
     tag: 'Control',
     title: 'Control Module',
+    subtitle: 'PID Controller & Velocity Commands',
     bg: 'https://berkeleydrone.github.io/images/docs/accel_noise.png',
     content: `
       <h3>Overview</h3>
@@ -440,6 +445,7 @@ const docData = [
   {
     tag: 'Workflow',
     title: 'Development Workflow',
+    subtitle: 'Software Development & Debugging Guide',
     bg: 'https://berkeleydrone.github.io/images/docs/gyro_noise.png',
     content: `
       <h3>Overview</h3>
@@ -489,12 +495,14 @@ const docData = [
 function openDocModal(index) {
   const modal = document.getElementById('docModal');
   const data = docData[index];
-  
-  document.getElementById('docModalBg').style.backgroundImage = 'url(' + data.bg + ')';
+
   document.getElementById('docModalTag').textContent = data.tag;
   document.getElementById('docModalTitle').textContent = data.title;
+  document.getElementById('docModalSubtitle').textContent = data.subtitle || 'Technical Documentation';
+  document.getElementById('docModalImage').src = data.bg;
+  document.getElementById('docModalImage').alt = data.title;
   document.getElementById('docModalContent').innerHTML = data.content;
-  
+
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
