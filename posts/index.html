@@ -157,6 +157,7 @@
   </svg>
 </button>
 
+<script src="/js/docs-content.js"></script>
 <script>
 (function() {
   const backToTop = document.getElementById('backToTop');
@@ -251,261 +252,6 @@ document.addEventListener('keydown', function(e) {
 });
 
 
-const docData = [
-  {
-    tag: 'Hardware',
-    title: 'Drone Frame & Components',
-    subtitle: 'A2RL Racing Drone Platform',
-    bg: 'https://berkeleydrone.github.io/images/docs/drone_parts.png',
-    content: `
-      <h3>Overview</h3>
-      <p>In this project, the Jetson Xavier is used as the main compute unit to run the code stack, including sensor drivers, control, perception, and planning modules. The communication is established between the Jetson Xavier (the brain) and the flight controller (the muscle).</p>
-      
-      <h3>Frame and Fasteners</h3>
-      <table>
-        <tr><th>Component</th><th>Type</th></tr>
-        <tr><td>Frame</td><td>A2RL X DCL SPEC FRAME</td></tr>
-        <tr><td>Battery Strap</td><td>Gemfan Kevlar Strap</td></tr>
-        <tr><td>XT30 Connectors</td><td>XT30 Male and Female Pairs</td></tr>
-      </table>
-      
-      <h3>Electronics</h3>
-      <table>
-        <tr><th>Component</th><th>Type</th></tr>
-        <tr><td>Motors</td><td>XNOVA Black Thunder 2207 2100KV</td></tr>
-        <tr><td>ESC</td><td>Foxeer Reaper F4 128K 65A BL32 4in1</td></tr>
-        <tr><td>Flight Controller</td><td>Foxeer H7 MPU6000 FC</td></tr>
-        <tr><td>VTX Antenna</td><td>Foxeer 5.8G Micro Lollipop</td></tr>
-        <tr><td>VTX Camera</td><td>HDZERO Nano 90</td></tr>
-        <tr><td>VTX</td><td>HDZERO Race 3 VTX</td></tr>
-        <tr><td>Receiver</td><td>IRC Ghost Atto</td></tr>
-      </table>
-      
-      <h3>RC Controller</h3>
-      <table>
-        <tr><th>Component</th><th>Type</th></tr>
-        <tr><td>Controller</td><td>Radiomaster Zorro 4in1</td></tr>
-        <tr><td>Transmitter Module</td><td>Ghost Module</td></tr>
-        <tr><td>Propellers</td><td>MCK 51466 V2 (5 inch)</td></tr>
-      </table>
-      
-      <img src="https://berkeleydrone.github.io/images/docs/drone_parts.png" alt="Drone Parts">
-      <p class="img-caption">Figure 1: Parts and sensors used in the project</p>
-      
-      <img src="https://berkeleydrone.github.io/images/docs/Drone_frame_image.png" alt="Drone CAD">
-      <p class="img-caption">Figure 2: CAD design of the drone parts</p>
-    `
-  },
-  {
-    tag: 'Calibration',
-    title: 'Sensor Calibration',
-    subtitle: 'Camera & IMU Calibration Procedures',
-    bg: 'https://berkeleydrone.github.io/images/docs/calibrated_images.png',
-    content: `
-      <h3>Overview</h3>
-      <p>Sensor calibration is an essential step for any real-world robotics platform to work properly and effectively. This is particularly true for custom-built platforms, such as the drone used in this project.</p>
-      
-      <h3>IMU Calibration</h3>
-      <p>For the IMU calibration, we recorded an 11-hour static ROS 2 bag to estimate intrinsic noise characteristics and long-term drift. The bag was converted to ROS 1 format using the rosbags package to enable offline calibration with the Allan Variance toolkit.</p>
-      <ul>
-        <li>Initial IMU data rate: ~30 Hz</li>
-        <li>Current maximum rate: 90 Hz</li>
-        <li>Target rate: 200+ Hz for state estimation</li>
-      </ul>
-      
-      <h3>Camera Calibration</h3>
-      <p>Camera intrinsic calibration and IMU–camera extrinsic calibration were performed using the Kalibr toolbox (ROS1). Multiple calibration bags were collected while moving the drone and checkerboard, producing accurate estimates of:</p>
-      <ul>
-        <li>Focal lengths and principal points</li>
-        <li>Distortion parameters</li>
-        <li>Rigid transformation T<sub>IC</sub> between IMU and camera frames</li>
-      </ul>
-      
-      <img src="https://berkeleydrone.github.io/images/docs/calibrated_images.png" alt="Calibrated Images">
-      <p class="img-caption">Figure 1: Demonstration of calibrated images</p>
-      
-      <img src="https://berkeleydrone.github.io/images/docs/accel_noise.png" alt="Accelerometer Noise">
-      <p class="img-caption">Figure 2: Calibration results - accelerometer</p>
-      
-      <img src="https://berkeleydrone.github.io/images/docs/gyro_noise.png" alt="Gyroscope Noise">
-      <p class="img-caption">Figure 3: Calibration results - gyroscope</p>
-      
-      <img src="https://berkeleydrone.github.io/images/docs/summary_noise.png" alt="Noise Summary">
-      <p class="img-caption">Figure 4: Calibration results - summary</p>
-    `
-  },
-  {
-    tag: 'Perception',
-    title: 'Perception Module',
-    subtitle: 'ArUco Marker Detection & Tracking',
-    bg: 'https://berkeleydrone.github.io/images/docs/pipeline_diagram.png',
-    content: `
-      <h3>Overview</h3>
-      <p>The Perception Module is responsible for processing raw camera images to detect and localize visual targets (ArUco markers and gates) in the drone's environment. It acts as the sensory processing layer that bridges Hardware (camera sensors) and Planning (high-level decision making).</p>
-      
-      <h3>ArUco Detector Node</h3>
-      <p>Detects ArUco markers in camera images and publishes their pixel coordinates and 3D pose in the camera frame.</p>
-      <ul>
-        <li><strong>Dictionary:</strong> DICT_4X4_50 (50 unique 4×4 markers)</li>
-        <li><strong>Marker Size:</strong> 0.15 m (configurable)</li>
-        <li><strong>Pose Estimation:</strong> cv2.solvePnP() with IPPE_SQUARE</li>
-      </ul>
-      
-      <h3>Gate Detector Node</h3>
-      <p>Detects racing gates using color-based segmentation (LAB color space) and contour detection with visual tracking (CSRT tracker).</p>
-      <ul>
-        <li><strong>Color Space:</strong> LAB for perceptually uniform segmentation</li>
-        <li><strong>Tracking:</strong> CSRT (Discriminative Correlation Filter)</li>
-        <li><strong>Gate Size:</strong> 1.4m × 1.4m</li>
-      </ul>
-      
-      <h3>Data Flow</h3>
-      <img src="https://berkeleydrone.github.io/images/docs/pipeline_diagram.png" alt="Pipeline Diagram">
-      <p class="img-caption">ArUco Marker tracking pipeline diagram</p>
-      
-      <h3>Key Topics</h3>
-      <table>
-        <tr><th>Topic</th><th>Type</th><th>Description</th></tr>
-        <tr><td>/aruco_detector/marker_pixel</td><td>PointStamped</td><td>Marker center in pixels</td></tr>
-        <tr><td>/aruco_detector/marker_pose</td><td>PoseStamped</td><td>Marker 3D pose</td></tr>
-        <tr><td>/aruco_detector/detected</td><td>Bool</td><td>Detection status</td></tr>
-      </table>
-    `
-  },
-  {
-    tag: 'Planning',
-    title: 'Planning Module',
-    subtitle: 'Error Computation & Trajectory Planning',
-    bg: 'https://berkeleydrone.github.io/images/docs/Drone_frame_image.png',
-    content: `
-      <h3>Overview</h3>
-      <p>The Planning Module is responsible for generating desired drone poses (position, orientation, and velocity setpoints) based on pre-planned trajectories, sensor feedback, or real-time perception data.</p>
-      
-      <h3>Planning Strategies</h3>
-      <ul>
-        <li><strong>Autonomous Planner:</strong> Follows pre-recorded waypoint trajectories from CSV files using KD-tree nearest-neighbor search</li>
-        <li><strong>ArUco Tracker Planner:</strong> Dynamically tracks ArUco markers, computing desired poses to keep markers centered</li>
-        <li><strong>Sequential Planner:</strong> Simple waypoint-by-waypoint traversal without localization feedback</li>
-        <li><strong>Manual Planner:</strong> Records pilot-controlled flight paths for later replay</li>
-      </ul>
-      
-      <h3>ArUco Tracker Control Law</h3>
-      <p>The tracker computes velocity commands to center the marker:</p>
-      <ul>
-        <li><code>error_x = marker_pixel.x - (image_width / 2)</code></li>
-        <li><code>vel_y = -gain_x × error_x</code> (lateral velocity)</li>
-        <li><code>vel_x = gain_z × distance_error</code> (forward velocity)</li>
-      </ul>
-      
-      <h3>Configuration Parameters</h3>
-      <table>
-        <tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
-        <tr><td>image_width/height</td><td>1920×1080</td><td>Camera resolution</td></tr>
-        <tr><td>gain_x, gain_y</td><td>0.002</td><td>Pixel to velocity gain</td></tr>
-        <tr><td>gain_z</td><td>0.5</td><td>Distance to velocity gain</td></tr>
-        <tr><td>target_distance</td><td>1.5 m</td><td>Desired distance to marker</td></tr>
-        <tr><td>max_vel_xy</td><td>0.5 m/s</td><td>Max lateral velocity</td></tr>
-      </table>
-    `
-  },
-  {
-    tag: 'Control',
-    title: 'Control Module',
-    subtitle: 'PID Controller & Velocity Commands',
-    bg: 'https://berkeleydrone.github.io/images/docs/accel_noise.png',
-    content: `
-      <h3>Overview</h3>
-      <p>The Control Module is responsible for converting high-level desired poses and velocities (from the Planning Module) into low-level RC commands that drive the drone's motors via the flight controller.</p>
-      
-      <h3>Control Strategies</h3>
-      <ul>
-        <li><strong>Autonomous Control Node:</strong> Full 6-DOF position and attitude control using cascade PID with localization feedback</li>
-        <li><strong>Velocity Control Node:</strong> Simplified velocity-to-RC mapping for visual servoing (no localization required)</li>
-        <li><strong>Manual Control Node:</strong> Pass-through relay for human pilot RC commands</li>
-      </ul>
-      
-      <h3>PID Configuration</h3>
-      <table>
-        <tr><th>Axis</th><th>KP</th><th>KI</th><th>KD</th></tr>
-        <tr><td>X-axis</td><td>8.0</td><td>0.0</td><td>5.0</td></tr>
-        <tr><td>Y-axis</td><td>8.0</td><td>0.0</td><td>5.0</td></tr>
-        <tr><td>Z-axis (altitude)</td><td>20.0</td><td>0.0</td><td>5.0</td></tr>
-        <tr><td>Yaw</td><td>1.0</td><td>0.0</td><td>0.0</td></tr>
-      </table>
-      
-      <h3>Control Law</h3>
-      <p><strong>Outer Loop (Position Control):</strong></p>
-      <ul>
-        <li><code>pos_error = desired_pos - current_pos</code></li>
-        <li><code>r_ddot_des = KP × pos_error + KD × vel_error</code></li>
-      </ul>
-      
-      <p><strong>Inner Loop (Attitude):</strong></p>
-      <ul>
-        <li><code>phi_des (roll) = (r_ddot_des_x × sin(yaw) - r_ddot_des_y × cos(yaw)) / g</code></li>
-        <li><code>theta_des (pitch) = (r_ddot_des_x × cos(yaw) + r_ddot_des_y × sin(yaw)) / g</code></li>
-      </ul>
-      
-      <h3>PWM Channel Mapping</h3>
-      <table>
-        <tr><th>Channel</th><th>Function</th><th>Range</th></tr>
-        <tr><td>1</td><td>Roll</td><td>1000-2000 PWM</td></tr>
-        <tr><td>2</td><td>Pitch</td><td>1000-2000 PWM</td></tr>
-        <tr><td>3</td><td>Throttle</td><td>1000-2000 PWM</td></tr>
-        <tr><td>4</td><td>Yaw</td><td>1000-2000 PWM</td></tr>
-        <tr><td>5</td><td>AUX1 (ARM)</td><td>1000 = armed</td></tr>
-      </table>
-    `
-  },
-  {
-    tag: 'Workflow',
-    title: 'Development Workflow',
-    subtitle: 'Software Development & Debugging Guide',
-    bg: 'https://berkeleydrone.github.io/images/docs/gyro_noise.png',
-    content: `
-      <h3>Overview</h3>
-      <p>This document summarizes the development workflow in three areas: hardware setup and testing, sensor calibration, and task implementation.</p>
-      
-      <h3>Step 1: Hardware Setup and Testing</h3>
-      <p>We assembled and bench-tested the aircraft powertrain, flight controller, radios, and data links.</p>
-      <ul>
-        <li><strong>Visual inspection:</strong> Frame integrity, motor/prop orientation, connector seating</li>
-        <li><strong>Power checks:</strong> Battery voltage, PDU rail voltages</li>
-        <li><strong>ESC/motor bench test:</strong> Spin each motor at low throttle (props removed)</li>
-        <li><strong>Telemetry and RC link test:</strong> Verify RC receiver channels and ground station connectivity</li>
-      </ul>
-      
-      <h3>Step 2: Sensor Calibration</h3>
-      <p>We calibrated IMU, magnetometer, barometer, and camera to ensure reliable state estimation.</p>
-      <ul>
-        <li><strong>IMU calibration:</strong> Static bias, temperature compensation tables</li>
-        <li><strong>Magnetometer:</strong> Full rotation / figure-eight motions for hard/soft iron corrections</li>
-        <li><strong>Camera:</strong> OpenCV calibrateCamera for intrinsics and distortion</li>
-      </ul>
-      
-      <h3>Step 3: Task Implementation</h3>
-      <p>With hardware validated and sensors calibrated, we implemented mission-level tasks.</p>
-      <ul>
-        <li><strong>State estimation integration:</strong> EKF/UKF with sensor streams</li>
-        <li><strong>Control loop tuning:</strong> PID/P gains using step responses</li>
-        <li><strong>Mission scripting:</strong> YAML/JSON waypoint definitions</li>
-        <li><strong>Testing progression:</strong> SITL → bench tests → tethered flights → real flights</li>
-      </ul>
-      
-      <img src="https://berkeleydrone.github.io/images/docs/pipeline_diagram.png" alt="Pipeline Diagram">
-      <p class="img-caption">ArUco Marker tracking pipeline diagram</p>
-      
-      <h3>Recommended Tools</h3>
-      <table>
-        <tr><th>Tool</th><th>Purpose</th></tr>
-        <tr><td>Gazebo</td><td>Physics simulation with wind and sensor noise</td></tr>
-        <tr><td>MAVProxy / QGroundControl</td><td>Ground station monitoring</td></tr>
-        <tr><td>rosbag</td><td>Data recording and replay</td></tr>
-        <tr><td>OpenCV / NumPy / SciPy</td><td>Calibration and image processing</td></tr>
-      </table>
-    `
-  }
-];
 
 function openDocModal(index) {
   const modal = document.getElementById('docModal');
@@ -514,8 +260,6 @@ function openDocModal(index) {
   document.getElementById('docModalTag').textContent = data.tag;
   document.getElementById('docModalTitle').textContent = data.title;
   document.getElementById('docModalSubtitle').textContent = data.subtitle || 'Technical Documentation';
-  document.getElementById('docModalImage').src = data.bg;
-  document.getElementById('docModalImage').alt = data.title;
   document.getElementById('docModalContent').innerHTML = data.content;
 
   modal.classList.add('active');
@@ -527,6 +271,40 @@ function closeDocModal(event) {
   modal.classList.remove('active');
   document.body.style.overflow = '';
 }
+
+
+const gradientMap = {
+  'blue': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  'purple': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+  'green': 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
+  'orange': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+};
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  docData.forEach(function(doc, index) {
+    const header = document.getElementById('doc-card-header-' + index);
+    if (!header) return;
+    
+    
+    const existingImg = header.querySelector('img');
+    if (existingImg) existingImg.remove();
+    
+    
+    header.classList.remove('doc-card-gradient-blue', 'doc-card-gradient-purple', 'doc-card-gradient-green', 'doc-card-gradient-orange');
+    
+    if (doc.cardBg && doc.cardBg.length > 0) {
+      
+      const img = document.createElement('img');
+      img.src = doc.cardBg;
+      img.alt = doc.tag;
+      header.insertBefore(img, header.firstChild);
+    } else if (doc.cardGradient && gradientMap[doc.cardGradient]) {
+      
+      header.style.background = gradientMap[doc.cardGradient];
+    }
+  });
+});
 </script>
 </body>
 
