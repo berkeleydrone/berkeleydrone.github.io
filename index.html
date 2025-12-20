@@ -975,11 +975,12 @@ body.home .main {
 <div class="pipeline-card">
 <div class="pipeline-header">
 <div class="pipeline-num">1</div>
-<div class="pipeline-icon">📷</div>
-</div>
+<div>
 <div class="pipeline-title">Align with Marker</div>
-<div class="pipeline-subtitle">Camera Detection</div>
+</div>
+</div>
 <ul class="pipeline-list">
+<div class="pipeline-subtitle">Camera Detection</div>
 <li>Monocular Camera (Arducam)</li>
 <li>Low latency processing</li>
 <li>Real-time marker detection</li>
@@ -989,11 +990,12 @@ body.home .main {
 <div class="pipeline-card">
 <div class="pipeline-header">
 <div class="pipeline-num">2</div>
-<div class="pipeline-icon">📡</div>
-</div>
+<div>
 <div class="pipeline-title">Publish Coordinates</div>
-<div class="pipeline-subtitle">ArUco Node</div>
+</div>
+</div>
 <ul class="pipeline-list">
+<div class="pipeline-subtitle">ArUco Node</div>
 <li>Publish marker pixel coords</li>
 <li>Subscribe: <code>/arducam/image_raw</code></li>
 <li>Process: <code>cv2.aruco</code></li>
@@ -1003,11 +1005,12 @@ body.home .main {
 <div class="pipeline-card">
 <div class="pipeline-header">
 <div class="pipeline-num">3</div>
-<div class="pipeline-icon">📐</div>
-</div>
+<div>
 <div class="pipeline-title">Compute Error</div>
-<div class="pipeline-subtitle">Error Calculation</div>
+</div>
+</div>
 <ul class="pipeline-list">
+<div class="pipeline-subtitle">Error Calculation</div>
 <li>Calculate x/y pixel error</li>
 <li>error = marker − image_center</li>
 <li>Feed into planning node</li>
@@ -1017,11 +1020,12 @@ body.home .main {
 <div class="pipeline-card">
 <div class="pipeline-header">
 <div class="pipeline-num">4</div>
-<div class="pipeline-icon">🚁</div>
-</div>
+<div>
 <div class="pipeline-title">Velocity Output</div>
-<div class="pipeline-subtitle">Control Command</div>
+</div>
+</div>
 <ul class="pipeline-list">
+<div class="pipeline-subtitle">Control Command</div>
 <li>Planner outputs velocities</li>
 <li>Correct positioning error</li>
 <li>Smooth trajectory</li>
@@ -1041,7 +1045,6 @@ body.home .main {
 <div class="doc-card" onclick="openDocModal(0)" data-doc-index="0">
 <div class="doc-card-header" id="doc-card-header-0">
 <div class="doc-card-overlay"></div>
-<div class="doc-card-icon">🔧</div>
 </div>
 <div class="doc-card-body">
 <span class="doc-card-tag">Hardware</span>
@@ -1055,7 +1058,6 @@ body.home .main {
 <div class="doc-card" onclick="openDocModal(1)" data-doc-index="1">
 <div class="doc-card-header" id="doc-card-header-1">
 <div class="doc-card-overlay"></div>
-<div class="doc-card-icon">📐</div>
 </div>
 <div class="doc-card-body">
 <span class="doc-card-tag">Calibration</span>
@@ -1069,7 +1071,6 @@ body.home .main {
 <div class="doc-card" onclick="openDocModal(5)" data-doc-index="5">
 <div class="doc-card-header" id="doc-card-header-5">
 <div class="doc-card-overlay"></div>
-<div class="doc-card-icon">📋</div>
 </div>
 <div class="doc-card-body">
 <span class="doc-card-tag">Workflow</span>
@@ -1092,7 +1093,6 @@ body.home .main {
 <div class="doc-card" onclick="openDocModal(2)" data-doc-index="2">
 <div class="doc-card-header" id="doc-card-header-2">
 <div class="doc-card-overlay"></div>
-<div class="doc-card-icon">👁️</div>
 </div>
 <div class="doc-card-body">
 <span class="doc-card-tag">Perception</span>
@@ -1106,7 +1106,6 @@ body.home .main {
 <div class="doc-card" onclick="openDocModal(3)" data-doc-index="3">
 <div class="doc-card-header" id="doc-card-header-3">
 <div class="doc-card-overlay"></div>
-<div class="doc-card-icon">🧠</div>
 </div>
 <div class="doc-card-body">
 <span class="doc-card-tag">Planning</span>
@@ -1120,7 +1119,6 @@ body.home .main {
 <div class="doc-card" onclick="openDocModal(4)" data-doc-index="4">
 <div class="doc-card-header" id="doc-card-header-4">
 <div class="doc-card-overlay"></div>
-<div class="doc-card-icon">🎮</div>
 </div>
 <div class="doc-card-body">
 <span class="doc-card-tag">Control</span>
