@@ -82,8 +82,13 @@ Drone Racing EECS 106/206A Final Project — Preparing for the A2RL Autonomous D
                 </a>
             </li>
             <li>
-                <a href="https://berkeleydrone.github.io/#implementation" title="Implementation">
-                    <span>Implementation</span>
+                <a href="https://berkeleydrone.github.io/#implementation" title="Hardware">
+                    <span>Hardware</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://berkeleydrone.github.io/#documentation" title="Software">
+                    <span>Software</span>
                 </a>
             </li>
             <li>
@@ -140,61 +145,96 @@ body.home .main {
   margin: 0 !important;
   padding: 0 !important;
 }
-.workflow-container { max-width: 1100px; margin: 0 auto; }
+.workflow-container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
 .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-top: 48px; }
-.steps-scroll-wrapper {
-  width: 100%;
+.pipeline-grid {
+  display: flex;
+  gap: 24px;
   margin-top: 48px;
+  padding: 0 24px;
+}
+.pipeline-card {
+  flex: 1 1 0;
+  background: white;
+  border-radius: 20px;
+  padding: 28px 32px;
+  border: 1px solid #E4E6EB;
+  transition: all 0.3s ease;
   position: relative;
 }
-.steps-scroll-container {
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 20px 0 32px 0;
-  scrollbar-width: thin;
-  scrollbar-color: #D1D5DB #F3F4F6;
+@media (max-width: 1000px) {
+  .pipeline-grid { flex-wrap: wrap; }
+  .pipeline-card { flex: 0 0 calc(50% - 12px); }
 }
-.steps-scroll-container::-webkit-scrollbar {
-  height: 8px;
+@media (max-width: 640px) {
+  .pipeline-card { flex: 0 0 100%; }
 }
-.steps-scroll-container::-webkit-scrollbar-track {
-  background: #F3F4F6;
-  border-radius: 4px;
-}
-.steps-scroll-container::-webkit-scrollbar-thumb {
-  background: #D1D5DB;
-  border-radius: 4px;
-}
-.steps-scroll-container::-webkit-scrollbar-thumb:hover {
-  background: #9CA3AF;
-}
-.steps-scroll-track {
-  display: flex;
-  gap: 20px;
-  padding-left: max(40px, calc((100vw - 1200px) / 2));
-  padding-right: max(40px, calc((100vw - 1200px) / 2));
-  width: max-content;
-}
-.step-card {
-  flex: 0 0 260px;
-  background: white;
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.step-card:hover {
+.pipeline-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 32px rgba(6, 104, 225, 0.12);
+  border-color: #0668E1;
 }
-.step-card .workflow-icon { font-size: 2rem; margin-bottom: 12px; }
-.step-card .workflow-title { font-size: 1.1rem; font-weight: 700; color: #1C1E21; margin-bottom: 10px; }
-.step-card .workflow-content { color: #65676B; font-size: 0.875rem; line-height: 1.5; }
-.step-card .workflow-list { margin-top: 8px; }
-.step-card .workflow-list li { padding: 4px 0; font-size: 0.8125rem; }
-@media (max-width: 768px) {
-  .steps-scroll-track { padding-left: 20px; }
-  .step-card { flex: 0 0 240px; padding: 24px; }
+.pipeline-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F0F2F5;
+}
+.pipeline-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #0668E1 0%, #5C7CFA 100%);
+  color: white;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.pipeline-icon { font-size: 1.875rem; }
+.pipeline-title { font-size: 1.0625rem; font-weight: 700; color: #1C1E21; margin: 0 0 10px 0; line-height: 1.3; }
+.pipeline-subtitle {
+  display: inline-block;
+  background: #E7F3FF;
+  color: #0668E1;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.pipeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.pipeline-list li {
+  padding: 5px 0;
+  font-size: 0.8125rem;
+  color: #65676B;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+}
+.pipeline-list li::before {
+  content: "→";
+  color: #0668E1;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.pipeline-list code {
+  background: #F0F2F5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #1C1E21;
 }
 .stages-section { padding: 100px 24px; max-width: 1400px; margin: 0 auto; }
 .stages-grid {
@@ -516,10 +556,16 @@ body.home .main {
 .workflow-list { list-style: none; padding: 0; margin: 16px 0 0 0; }
 .workflow-list li { padding: 8px 0; color: #1C1E21; font-size: 0.9375rem; }
 .workflow-list li:before { content: "→ "; color: #0668E1; font-weight: 700; margin-right: 8px; }
-.highlight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 48px; }
-.highlight-card { background: white; border: 2px solid #E4E6EB; border-radius: 12px; padding: 24px; text-align: center; }
-.highlight-value { font-size: 2.5rem; font-weight: 800; color: #0668E1; line-height: 1; margin-bottom: 8px; }
-.highlight-label { font-size: 1rem; color: #65676B; font-weight: 500; }
+.highlight-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+@media (max-width: 1024px) { .highlight-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .highlight-grid { grid-template-columns: 1fr; } }
+.highlight-card { background: white; border: 2px solid #E4E6EB; border-radius: 16px; padding: 32px 24px; text-align: center; transition: all 0.3s ease; min-height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.highlight-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(6,104,225,0.15); border-color: #0668E1; }
+.highlight-icon { font-size: 2.5rem; margin-bottom: 16px; }
+.highlight-value { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #0668E1 0%, #5C7CFA 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
+.highlight-value.small { font-size: 1.75rem; }
+.highlight-label { font-size: 1rem; color: #1C1E21; font-weight: 600; margin-bottom: 8px; line-height: 1.2; }
+.highlight-desc { font-size: 0.875rem; color: #8A8D91; font-weight: 400; line-height: 1.4; }
 .demo-section { padding: 100px 24px; max-width: 1000px; margin: 0 auto; }
 .video-container { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12); margin-top: 40px; }
 .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
@@ -541,6 +587,255 @@ body.home .main {
   .team-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px; }
   .team-avatar { width: 100px; height: 100px; font-size: 2rem; }
 }
+/* Subtle Enhancements */
+.section-tag {
+  position: relative;
+  display: inline-block;
+}
+.section-tag::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #0668E1, transparent);
+  border-radius: 2px;
+}
+.section-title {
+  background: linear-gradient(135deg, #1C1E21 0%, #0668E1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Documentation Cards */
+.docs-section { padding: 100px 24px; max-width: 1400px; margin: 0 auto; }
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.doc-card {
+  background: white;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #E4E6EB;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+.doc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+.doc-card-header {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+}
+.doc-card-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.doc-card:hover .doc-card-header img { transform: scale(1.05); }
+.doc-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+.doc-card-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.doc-card-body {
+  padding: 24px;
+}
+.doc-card-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #0668E1 0%, #5C7CFA 100%);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.doc-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1C1E21;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+.doc-card-desc {
+  font-size: 0.875rem;
+  color: #65676B;
+  line-height: 1.6;
+  margin: 0;
+}
+.doc-card-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #E4E6EB;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.doc-card-read {
+  font-size: 0.8rem;
+  color: #0668E1;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.doc-card-read svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+/* Doc Modal */
+.doc-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 24px;
+}
+.doc-modal.active { opacity: 1; visibility: visible; }
+.doc-modal-content {
+  background: white;
+  border-radius: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+}
+.doc-modal.active .doc-modal-content { transform: scale(1) translateY(0); }
+.doc-modal-header {
+  position: relative;
+  flex-shrink: 0;
+}
+.doc-modal-header-bg {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.doc-modal-header-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+}
+.doc-modal-header-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 32px;
+  color: white;
+  z-index: 1;
+}
+.doc-modal-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.doc-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.doc-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+.doc-modal-close:hover { background: rgba(255,255,255,0.3); transform: rotate(90deg); }
+.doc-modal-close svg { width: 20px; height: 20px; stroke: white; }
+.doc-modal-body {
+  padding: 32px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+.doc-modal-body::-webkit-scrollbar { width: 8px; }
+.doc-modal-body::-webkit-scrollbar-track { background: #F0F2F5; }
+.doc-modal-body::-webkit-scrollbar-thumb { background: #C4C6CA; border-radius: 4px; }
+.doc-content h3 { font-size: 1.25rem; font-weight: 700; color: #1C1E21; margin: 24px 0 12px 0; }
+.doc-content h3:first-child { margin-top: 0; }
+.doc-content p { font-size: 0.95rem; color: #65676B; line-height: 1.7; margin: 0 0 16px 0; }
+.doc-content ul { margin: 0 0 16px 0; padding-left: 20px; }
+.doc-content li { font-size: 0.95rem; color: #65676B; line-height: 1.7; margin-bottom: 8px; }
+.doc-content img { width: 100%; border-radius: 12px; margin: 16px 0; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.doc-content .img-caption { font-size: 0.8rem; color: #8A8D91; text-align: center; margin-top: -8px; margin-bottom: 16px; }
+.doc-content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.875rem; }
+.doc-content th, .doc-content td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #E4E6EB; }
+.doc-content th { background: #F8F9FA; font-weight: 600; color: #1C1E21; }
+.doc-content td { color: #65676B; }
+@media (max-width: 1200px) {
+  .docs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .docs-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .docs-section { padding: 60px 20px; }
+  .doc-modal { padding: 12px; }
+  .doc-modal-content { max-height: 95vh; }
+  .doc-modal-header-bg { height: 150px; }
+  .doc-modal-title { font-size: 1.5rem; }
+  .doc-modal-body { padding: 24px; }
+}
 </style>
 <div class="hero-section">
 <video class="hero-video" autoplay muted loop playsinline><source src="vedio/hero.mp4" type="video/mp4"></video>
@@ -548,8 +843,14 @@ body.home .main {
 <h1 class="hero-title">A2RL: Autonomous<br>Drone Racing</h1>
 <p class="hero-subtitle">EECS 106/206A Final Project — Preparing for the A2RL Autonomous Drone Championship in Abu Dhabi (2026-2027)</p>
 <div class="hero-buttons">
-<a href="#overview" class="btn">Learn More</a>
-<a href="#demo" class="btn btn-outline">Watch Demo</a>
+<a href="#overview" class="btn">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+  Learn More
+</a>
+<a href="#demo" class="btn btn-outline">
+  <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;"><path d="M8 5v14l11-7z"/></svg>
+  Watch Demo
+</a>
 </div>
 </div>
 <div class="scroll-indicator">
@@ -565,16 +866,28 @@ body.home .main {
 </div>
 <div class="highlight-grid">
 <div class="highlight-card">
-<div class="highlight-value">30Hz</div>
+<div class="highlight-icon">🎯</div>
+<div class="highlight-value small">30Hz</div>
 <div class="highlight-label">Detection Rate</div>
+<div class="highlight-desc">Real-time marker tracking</div>
 </div>
 <div class="highlight-card">
-<div class="highlight-value">3 Steps</div>
-<div class="highlight-label">Development Workflow</div>
+<div class="highlight-icon">⚡</div>
+<div class="highlight-value small">90Hz</div>
+<div class="highlight-label">IMU Sampling</div>
+<div class="highlight-desc">High-frequency sensor data</div>
 </div>
 <div class="highlight-card">
-<div class="highlight-value">2026</div>
+<div class="highlight-icon">🏆</div>
+<div class="highlight-value small">2026</div>
 <div class="highlight-label">Competition Year</div>
+<div class="highlight-desc">A2RL Championship</div>
+</div>
+<div class="highlight-card">
+<div class="highlight-icon">🔧</div>
+<div class="highlight-value small">3 Modules</div>
+<div class="highlight-label">Flight Stack</div>
+<div class="highlight-desc">Perception, Planning, Control</div>
 </div>
 </div>
 </div>
@@ -583,57 +896,59 @@ body.home .main {
 <div class="section-header">
 <span class="section-tag">SYSTEM ARCHITECTURE</span>
 <h2 class="section-title">Sensing - ArUco Marker Tracking</h2>
-<p class="section-description">Our system uses a four-stage pipeline for autonomous drone control through visual tracking</p>
+<p class="section-description">Four-stage pipeline for autonomous drone control through visual tracking</p>
 </div>
+<div class="pipeline-grid">
+<div class="pipeline-card">
+<div class="pipeline-header">
+<div class="pipeline-num">1</div>
+<div class="pipeline-icon">📷</div>
 </div>
-<div class="steps-scroll-wrapper">
-<div class="steps-scroll-container">
-<div class="steps-scroll-track">
-<div class="step-card">
-<div class="workflow-icon">📷</div>
-<h3 class="workflow-title">Step 1: Align with Marker</h3>
-<div class="workflow-content">
-<p><strong>Camera Detection</strong></p>
-<ul class="workflow-list">
+<div class="pipeline-title">Align with Marker</div>
+<div class="pipeline-subtitle">Camera Detection</div>
+<ul class="pipeline-list">
 <li>Monocular Camera (Arducam)</li>
 <li>Low latency processing</li>
 <li>Real-time marker detection</li>
 <li>Align with marker center</li>
 </ul>
 </div>
+<div class="pipeline-card">
+<div class="pipeline-header">
+<div class="pipeline-num">2</div>
+<div class="pipeline-icon">📡</div>
 </div>
-<div class="step-card">
-<div class="workflow-icon">📡</div>
-<h3 class="workflow-title">Step 2: Publish Coordinates</h3>
-<div class="workflow-content">
-<p><strong>ArUco Node</strong></p>
-<ul class="workflow-list">
+<div class="pipeline-title">Publish Coordinates</div>
+<div class="pipeline-subtitle">ArUco Node</div>
+<ul class="pipeline-list">
 <li>Publish marker pixel coords</li>
 <li>Subscribe: <code>/arducam/image_raw</code></li>
 <li>Process: <code>cv2.aruco</code></li>
 <li>Publish: <code>/marker_pixel</code></li>
 </ul>
 </div>
+<div class="pipeline-card">
+<div class="pipeline-header">
+<div class="pipeline-num">3</div>
+<div class="pipeline-icon">📐</div>
 </div>
-<div class="step-card">
-<div class="workflow-icon">📐</div>
-<h3 class="workflow-title">Step 3: Compute Error</h3>
-<div class="workflow-content">
-<p><strong>Error Calculation</strong></p>
-<ul class="workflow-list">
+<div class="pipeline-title">Compute Error</div>
+<div class="pipeline-subtitle">Error Calculation</div>
+<ul class="pipeline-list">
 <li>Calculate x/y pixel error</li>
-<li>error = marker - image_center</li>
+<li>error = marker − image_center</li>
 <li>Feed into planning node</li>
 <li>Real-time error tracking</li>
 </ul>
 </div>
+<div class="pipeline-card">
+<div class="pipeline-header">
+<div class="pipeline-num">4</div>
+<div class="pipeline-icon">🚁</div>
 </div>
-<div class="step-card">
-<div class="workflow-icon">🚁</div>
-<h3 class="workflow-title">Step 4: Velocity Output</h3>
-<div class="workflow-content">
-<p><strong>Control Command</strong></p>
-<ul class="workflow-list">
+<div class="pipeline-title">Velocity Output</div>
+<div class="pipeline-subtitle">Control Command</div>
+<ul class="pipeline-list">
 <li>Planner outputs velocities</li>
 <li>Correct positioning error</li>
 <li>Smooth trajectory</li>
@@ -643,85 +958,128 @@ body.home .main {
 </div>
 </div>
 </div>
-</div>
-</div>
 <div id="implementation" class="content-section">
 <div class="section-header">
-<span class="section-tag">IMPLEMENTATION</span>
-<h2 class="section-title">Hardware & Development</h2>
+<span class="section-tag">HARDWARE & SETUP</span>
+<h2 class="section-title">Platform Configuration</h2>
+<p class="section-description">Custom racing drone built with A2RL spec frame and calibrated sensors</p>
 </div>
-<div class="workflow-grid">
-<div class="workflow-card">
-<div class="workflow-icon">🔧</div>
-<h3 class="workflow-title">Hardware</h3>
-<div class="workflow-content">
-<ul class="workflow-list">
-<li>Jetson Xavier (compute unit)</li>
-<li>Monocular Camera (Arducam)</li>
-<li>Flight Controller (Foxeer H7 FC)</li>
-<li>Onboard IMU sensors</li>
-</ul>
+<div class="docs-grid" style="grid-template-columns: repeat(3, 1fr);">
+<div class="doc-card" onclick="openDocModal(0)">
+<div class="doc-card-header">
+<img src="https://berkeleydrone.github.io/images/docs/drone_parts.png" alt="Hardware">
+<div class="doc-card-overlay"></div>
+<div class="doc-card-icon">🔧</div>
 </div>
+<div class="doc-card-body">
+<span class="doc-card-tag">Hardware</span>
+<h3 class="doc-card-title">Drone Components</h3>
+<p class="doc-card-desc">Complete parts list including frame, electronics, motors, and RC controller.</p>
 </div>
-<div class="workflow-card">
-<div class="workflow-icon">⚙️</div>
-<h3 class="workflow-title">Calibration</h3>
-<div class="workflow-content">
-<p><strong>Kalibr & Allan Variance</strong></p>
-<ul class="workflow-list">
-<li>Camera calibration</li>
-<li>IMU calibration</li>
-<li>Camera-IMU extrinsics</li>
-<li>Sensor synchronization</li>
-</ul>
+<div class="doc-card-footer">
+<span class="doc-card-read">View Details <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
 </div>
 </div>
-<div class="workflow-card">
-<div class="workflow-icon">📋</div>
-<h3 class="workflow-title">Development Workflow</h3>
-<div class="workflow-content">
-<p><strong>3-Step Process</strong></p>
-<ul class="workflow-list">
-<li>Step 1: Hardware setup & testing</li>
-<li>Step 2: Sensor calibration</li>
-<li>Step 3: Task implementation</li>
-</ul>
+<div class="doc-card" onclick="openDocModal(1)">
+<div class="doc-card-header">
+<img src="https://berkeleydrone.github.io/images/docs/calibrated_images.png" alt="Calibration">
+<div class="doc-card-overlay"></div>
+<div class="doc-card-icon">📐</div>
+</div>
+<div class="doc-card-body">
+<span class="doc-card-tag">Calibration</span>
+<h3 class="doc-card-title">Sensor Calibration</h3>
+<p class="doc-card-desc">IMU calibration with Allan Variance and camera calibration with Kalibr.</p>
+</div>
+<div class="doc-card-footer">
+<span class="doc-card-read">View Details <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+</div>
+</div>
+<div class="doc-card" onclick="openDocModal(5)">
+<div class="doc-card-header">
+<img src="https://berkeleydrone.github.io/images/docs/pipeline_diagram.png" alt="Workflow">
+<div class="doc-card-overlay"></div>
+<div class="doc-card-icon">📋</div>
+</div>
+<div class="doc-card-body">
+<span class="doc-card-tag">Workflow</span>
+<h3 class="doc-card-title">Development Process</h3>
+<p class="doc-card-desc">Step-by-step process from hardware setup to task implementation.</p>
+</div>
+<div class="doc-card-footer">
+<span class="doc-card-read">View Details <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
 </div>
 </div>
 </div>
 </div>
-<div class="workflow-section">
-<div class="workflow-container">
+<div id="documentation" class="docs-section">
 <div class="section-header">
-<span class="section-tag">CONTROL SYSTEM</span>
-<h2 class="section-title">Flight Control & Planning</h2>
-<p class="section-description">Jetson Xavier runs the main flight stack with planning, controller, and perception modules</p>
+<span class="section-tag">SOFTWARE MODULES</span>
+<h2 class="section-title">Flight Stack Architecture</h2>
+<p class="section-description">ROS2-based perception, planning, and control modules running on Jetson Xavier</p>
 </div>
-<div class="workflow-grid">
-<div class="workflow-card">
-<div class="workflow-icon">🧠</div>
-<h3 class="workflow-title">Planning Module</h3>
-<div class="workflow-content">
-<p><strong>Path Generation</strong></p>
-<p>Computes optimal trajectories based on marker positions and desired velocities.</p>
+<div class="docs-grid" style="grid-template-columns: repeat(3, 1fr);">
+<div class="doc-card" onclick="openDocModal(2)">
+<div class="doc-card-header">
+<img src="https://berkeleydrone.github.io/images/docs/pipeline_diagram.png" alt="Perception">
+<div class="doc-card-overlay"></div>
+<div class="doc-card-icon">👁️</div>
 </div>
+<div class="doc-card-body">
+<span class="doc-card-tag">Perception</span>
+<h3 class="doc-card-title">Perception Module</h3>
+<p class="doc-card-desc">ArUco marker detection and gate tracking using OpenCV with pose estimation.</p>
 </div>
-<div class="workflow-card">
-<div class="workflow-icon">🎮</div>
-<h3 class="workflow-title">Controller Module</h3>
-<div class="workflow-content">
-<p><strong>Flight Control</strong></p>
-<p>Maps velocities to RC commands (roll, pitch, throttle, yaw) for the flight controller.</p>
-</div>
-</div>
-<div class="workflow-card">
-<div class="workflow-icon">👁️</div>
-<h3 class="workflow-title">Perception Module</h3>
-<div class="workflow-content">
-<p><strong>Visual Processing</strong></p>
-<p>ArUco marker detection and tracking using monocular camera with low latency.</p>
+<div class="doc-card-footer">
+<span class="doc-card-read">View Details <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
 </div>
 </div>
+<div class="doc-card" onclick="openDocModal(3)">
+<div class="doc-card-header">
+<img src="https://berkeleydrone.github.io/images/docs/Drone_frame_image.png" alt="Planning">
+<div class="doc-card-overlay"></div>
+<div class="doc-card-icon">🧠</div>
+</div>
+<div class="doc-card-body">
+<span class="doc-card-tag">Planning</span>
+<h3 class="doc-card-title">Planning Module</h3>
+<p class="doc-card-desc">Autonomous trajectory following and ArUco tracker with velocity commands.</p>
+</div>
+<div class="doc-card-footer">
+<span class="doc-card-read">View Details <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+</div>
+</div>
+<div class="doc-card" onclick="openDocModal(4)">
+<div class="doc-card-header">
+<img src="https://berkeleydrone.github.io/images/docs/accel_noise.png" alt="Control">
+<div class="doc-card-overlay"></div>
+<div class="doc-card-icon">🎮</div>
+</div>
+<div class="doc-card-body">
+<span class="doc-card-tag">Control</span>
+<h3 class="doc-card-title">Control Module</h3>
+<p class="doc-card-desc">Cascade PID controller and RC command generation for flight controller.</p>
+</div>
+<div class="doc-card-footer">
+<span class="doc-card-read">View Details <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+</div>
+</div>
+</div>
+</div>
+<div class="doc-modal" id="docModal" onclick="closeDocModal(event)">
+<div class="doc-modal-content" onclick="event.stopPropagation()">
+<div class="doc-modal-header">
+<div class="doc-modal-header-bg" id="docModalBg"></div>
+<div class="doc-modal-header-content">
+<span class="doc-modal-tag" id="docModalTag">Hardware</span>
+<h2 class="doc-modal-title" id="docModalTitle">Drone Frame & Components</h2>
+</div>
+<button class="doc-modal-close" onclick="closeDocModal(event)">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</button>
+</div>
+<div class="doc-modal-body">
+<div class="doc-content" id="docModalContent"></div>
 </div>
 </div>
 </div>
@@ -1052,8 +1410,279 @@ function closeModal(event) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeModal();
+    closeDocModal();
   }
 });
+
+
+const docData = [
+  {
+    tag: 'Hardware',
+    title: 'Drone Frame & Components',
+    bg: 'https://berkeleydrone.github.io/images/docs/drone_parts.png',
+    content: `
+      <h3>Overview</h3>
+      <p>In this project, the Jetson Xavier is used as the main compute unit to run the code stack, including sensor drivers, control, perception, and planning modules. The communication is established between the Jetson Xavier (the brain) and the flight controller (the muscle).</p>
+      
+      <h3>Frame and Fasteners</h3>
+      <table>
+        <tr><th>Component</th><th>Type</th></tr>
+        <tr><td>Frame</td><td>A2RL X DCL SPEC FRAME</td></tr>
+        <tr><td>Battery Strap</td><td>Gemfan Kevlar Strap</td></tr>
+        <tr><td>XT30 Connectors</td><td>XT30 Male and Female Pairs</td></tr>
+      </table>
+      
+      <h3>Electronics</h3>
+      <table>
+        <tr><th>Component</th><th>Type</th></tr>
+        <tr><td>Motors</td><td>XNOVA Black Thunder 2207 2100KV</td></tr>
+        <tr><td>ESC</td><td>Foxeer Reaper F4 128K 65A BL32 4in1</td></tr>
+        <tr><td>Flight Controller</td><td>Foxeer H7 MPU6000 FC</td></tr>
+        <tr><td>VTX Antenna</td><td>Foxeer 5.8G Micro Lollipop</td></tr>
+        <tr><td>VTX Camera</td><td>HDZERO Nano 90</td></tr>
+        <tr><td>VTX</td><td>HDZERO Race 3 VTX</td></tr>
+        <tr><td>Receiver</td><td>IRC Ghost Atto</td></tr>
+      </table>
+      
+      <h3>RC Controller</h3>
+      <table>
+        <tr><th>Component</th><th>Type</th></tr>
+        <tr><td>Controller</td><td>Radiomaster Zorro 4in1</td></tr>
+        <tr><td>Transmitter Module</td><td>Ghost Module</td></tr>
+        <tr><td>Propellers</td><td>MCK 51466 V2 (5 inch)</td></tr>
+      </table>
+      
+      <img src="https://berkeleydrone.github.io/images/docs/drone_parts.png" alt="Drone Parts">
+      <p class="img-caption">Figure 1: Parts and sensors used in the project</p>
+      
+      <img src="https://berkeleydrone.github.io/images/docs/Drone_frame_image.png" alt="Drone CAD">
+      <p class="img-caption">Figure 2: CAD design of the drone parts</p>
+    `
+  },
+  {
+    tag: 'Calibration',
+    title: 'Sensor Calibration',
+    bg: 'https://berkeleydrone.github.io/images/docs/calibrated_images.png',
+    content: `
+      <h3>Overview</h3>
+      <p>Sensor calibration is an essential step for any real-world robotics platform to work properly and effectively. This is particularly true for custom-built platforms, such as the drone used in this project.</p>
+      
+      <h3>IMU Calibration</h3>
+      <p>For the IMU calibration, we recorded an 11-hour static ROS 2 bag to estimate intrinsic noise characteristics and long-term drift. The bag was converted to ROS 1 format using the rosbags package to enable offline calibration with the Allan Variance toolkit.</p>
+      <ul>
+        <li>Initial IMU data rate: ~30 Hz</li>
+        <li>Current maximum rate: 90 Hz</li>
+        <li>Target rate: 200+ Hz for state estimation</li>
+      </ul>
+      
+      <h3>Camera Calibration</h3>
+      <p>Camera intrinsic calibration and IMU–camera extrinsic calibration were performed using the Kalibr toolbox (ROS1). Multiple calibration bags were collected while moving the drone and checkerboard, producing accurate estimates of:</p>
+      <ul>
+        <li>Focal lengths and principal points</li>
+        <li>Distortion parameters</li>
+        <li>Rigid transformation T<sub>IC</sub> between IMU and camera frames</li>
+      </ul>
+      
+      <img src="https://berkeleydrone.github.io/images/docs/calibrated_images.png" alt="Calibrated Images">
+      <p class="img-caption">Figure 1: Demonstration of calibrated images</p>
+      
+      <img src="https://berkeleydrone.github.io/images/docs/accel_noise.png" alt="Accelerometer Noise">
+      <p class="img-caption">Figure 2: Calibration results - accelerometer</p>
+      
+      <img src="https://berkeleydrone.github.io/images/docs/gyro_noise.png" alt="Gyroscope Noise">
+      <p class="img-caption">Figure 3: Calibration results - gyroscope</p>
+      
+      <img src="https://berkeleydrone.github.io/images/docs/summary_noise.png" alt="Noise Summary">
+      <p class="img-caption">Figure 4: Calibration results - summary</p>
+    `
+  },
+  {
+    tag: 'Perception',
+    title: 'Perception Module',
+    bg: 'https://berkeleydrone.github.io/images/docs/pipeline_diagram.png',
+    content: `
+      <h3>Overview</h3>
+      <p>The Perception Module is responsible for processing raw camera images to detect and localize visual targets (ArUco markers and gates) in the drone's environment. It acts as the sensory processing layer that bridges Hardware (camera sensors) and Planning (high-level decision making).</p>
+      
+      <h3>ArUco Detector Node</h3>
+      <p>Detects ArUco markers in camera images and publishes their pixel coordinates and 3D pose in the camera frame.</p>
+      <ul>
+        <li><strong>Dictionary:</strong> DICT_4X4_50 (50 unique 4×4 markers)</li>
+        <li><strong>Marker Size:</strong> 0.15 m (configurable)</li>
+        <li><strong>Pose Estimation:</strong> cv2.solvePnP() with IPPE_SQUARE</li>
+      </ul>
+      
+      <h3>Gate Detector Node</h3>
+      <p>Detects racing gates using color-based segmentation (LAB color space) and contour detection with visual tracking (CSRT tracker).</p>
+      <ul>
+        <li><strong>Color Space:</strong> LAB for perceptually uniform segmentation</li>
+        <li><strong>Tracking:</strong> CSRT (Discriminative Correlation Filter)</li>
+        <li><strong>Gate Size:</strong> 1.4m × 1.4m</li>
+      </ul>
+      
+      <h3>Data Flow</h3>
+      <img src="https://berkeleydrone.github.io/images/docs/pipeline_diagram.png" alt="Pipeline Diagram">
+      <p class="img-caption">ArUco Marker tracking pipeline diagram</p>
+      
+      <h3>Key Topics</h3>
+      <table>
+        <tr><th>Topic</th><th>Type</th><th>Description</th></tr>
+        <tr><td>/aruco_detector/marker_pixel</td><td>PointStamped</td><td>Marker center in pixels</td></tr>
+        <tr><td>/aruco_detector/marker_pose</td><td>PoseStamped</td><td>Marker 3D pose</td></tr>
+        <tr><td>/aruco_detector/detected</td><td>Bool</td><td>Detection status</td></tr>
+      </table>
+    `
+  },
+  {
+    tag: 'Planning',
+    title: 'Planning Module',
+    bg: 'https://berkeleydrone.github.io/images/docs/Drone_frame_image.png',
+    content: `
+      <h3>Overview</h3>
+      <p>The Planning Module is responsible for generating desired drone poses (position, orientation, and velocity setpoints) based on pre-planned trajectories, sensor feedback, or real-time perception data.</p>
+      
+      <h3>Planning Strategies</h3>
+      <ul>
+        <li><strong>Autonomous Planner:</strong> Follows pre-recorded waypoint trajectories from CSV files using KD-tree nearest-neighbor search</li>
+        <li><strong>ArUco Tracker Planner:</strong> Dynamically tracks ArUco markers, computing desired poses to keep markers centered</li>
+        <li><strong>Sequential Planner:</strong> Simple waypoint-by-waypoint traversal without localization feedback</li>
+        <li><strong>Manual Planner:</strong> Records pilot-controlled flight paths for later replay</li>
+      </ul>
+      
+      <h3>ArUco Tracker Control Law</h3>
+      <p>The tracker computes velocity commands to center the marker:</p>
+      <ul>
+        <li><code>error_x = marker_pixel.x - (image_width / 2)</code></li>
+        <li><code>vel_y = -gain_x × error_x</code> (lateral velocity)</li>
+        <li><code>vel_x = gain_z × distance_error</code> (forward velocity)</li>
+      </ul>
+      
+      <h3>Configuration Parameters</h3>
+      <table>
+        <tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
+        <tr><td>image_width/height</td><td>1920×1080</td><td>Camera resolution</td></tr>
+        <tr><td>gain_x, gain_y</td><td>0.002</td><td>Pixel to velocity gain</td></tr>
+        <tr><td>gain_z</td><td>0.5</td><td>Distance to velocity gain</td></tr>
+        <tr><td>target_distance</td><td>1.5 m</td><td>Desired distance to marker</td></tr>
+        <tr><td>max_vel_xy</td><td>0.5 m/s</td><td>Max lateral velocity</td></tr>
+      </table>
+    `
+  },
+  {
+    tag: 'Control',
+    title: 'Control Module',
+    bg: 'https://berkeleydrone.github.io/images/docs/accel_noise.png',
+    content: `
+      <h3>Overview</h3>
+      <p>The Control Module is responsible for converting high-level desired poses and velocities (from the Planning Module) into low-level RC commands that drive the drone's motors via the flight controller.</p>
+      
+      <h3>Control Strategies</h3>
+      <ul>
+        <li><strong>Autonomous Control Node:</strong> Full 6-DOF position and attitude control using cascade PID with localization feedback</li>
+        <li><strong>Velocity Control Node:</strong> Simplified velocity-to-RC mapping for visual servoing (no localization required)</li>
+        <li><strong>Manual Control Node:</strong> Pass-through relay for human pilot RC commands</li>
+      </ul>
+      
+      <h3>PID Configuration</h3>
+      <table>
+        <tr><th>Axis</th><th>KP</th><th>KI</th><th>KD</th></tr>
+        <tr><td>X-axis</td><td>8.0</td><td>0.0</td><td>5.0</td></tr>
+        <tr><td>Y-axis</td><td>8.0</td><td>0.0</td><td>5.0</td></tr>
+        <tr><td>Z-axis (altitude)</td><td>20.0</td><td>0.0</td><td>5.0</td></tr>
+        <tr><td>Yaw</td><td>1.0</td><td>0.0</td><td>0.0</td></tr>
+      </table>
+      
+      <h3>Control Law</h3>
+      <p><strong>Outer Loop (Position Control):</strong></p>
+      <ul>
+        <li><code>pos_error = desired_pos - current_pos</code></li>
+        <li><code>r_ddot_des = KP × pos_error + KD × vel_error</code></li>
+      </ul>
+      
+      <p><strong>Inner Loop (Attitude):</strong></p>
+      <ul>
+        <li><code>phi_des (roll) = (r_ddot_des_x × sin(yaw) - r_ddot_des_y × cos(yaw)) / g</code></li>
+        <li><code>theta_des (pitch) = (r_ddot_des_x × cos(yaw) + r_ddot_des_y × sin(yaw)) / g</code></li>
+      </ul>
+      
+      <h3>PWM Channel Mapping</h3>
+      <table>
+        <tr><th>Channel</th><th>Function</th><th>Range</th></tr>
+        <tr><td>1</td><td>Roll</td><td>1000-2000 PWM</td></tr>
+        <tr><td>2</td><td>Pitch</td><td>1000-2000 PWM</td></tr>
+        <tr><td>3</td><td>Throttle</td><td>1000-2000 PWM</td></tr>
+        <tr><td>4</td><td>Yaw</td><td>1000-2000 PWM</td></tr>
+        <tr><td>5</td><td>AUX1 (ARM)</td><td>1000 = armed</td></tr>
+      </table>
+    `
+  },
+  {
+    tag: 'Workflow',
+    title: 'Development Workflow',
+    bg: 'https://berkeleydrone.github.io/images/docs/gyro_noise.png',
+    content: `
+      <h3>Overview</h3>
+      <p>This document summarizes the development workflow in three areas: hardware setup and testing, sensor calibration, and task implementation.</p>
+      
+      <h3>Step 1: Hardware Setup and Testing</h3>
+      <p>We assembled and bench-tested the aircraft powertrain, flight controller, radios, and data links.</p>
+      <ul>
+        <li><strong>Visual inspection:</strong> Frame integrity, motor/prop orientation, connector seating</li>
+        <li><strong>Power checks:</strong> Battery voltage, PDU rail voltages</li>
+        <li><strong>ESC/motor bench test:</strong> Spin each motor at low throttle (props removed)</li>
+        <li><strong>Telemetry and RC link test:</strong> Verify RC receiver channels and ground station connectivity</li>
+      </ul>
+      
+      <h3>Step 2: Sensor Calibration</h3>
+      <p>We calibrated IMU, magnetometer, barometer, and camera to ensure reliable state estimation.</p>
+      <ul>
+        <li><strong>IMU calibration:</strong> Static bias, temperature compensation tables</li>
+        <li><strong>Magnetometer:</strong> Full rotation / figure-eight motions for hard/soft iron corrections</li>
+        <li><strong>Camera:</strong> OpenCV calibrateCamera for intrinsics and distortion</li>
+      </ul>
+      
+      <h3>Step 3: Task Implementation</h3>
+      <p>With hardware validated and sensors calibrated, we implemented mission-level tasks.</p>
+      <ul>
+        <li><strong>State estimation integration:</strong> EKF/UKF with sensor streams</li>
+        <li><strong>Control loop tuning:</strong> PID/P gains using step responses</li>
+        <li><strong>Mission scripting:</strong> YAML/JSON waypoint definitions</li>
+        <li><strong>Testing progression:</strong> SITL → bench tests → tethered flights → real flights</li>
+      </ul>
+      
+      <img src="https://berkeleydrone.github.io/images/docs/pipeline_diagram.png" alt="Pipeline Diagram">
+      <p class="img-caption">ArUco Marker tracking pipeline diagram</p>
+      
+      <h3>Recommended Tools</h3>
+      <table>
+        <tr><th>Tool</th><th>Purpose</th></tr>
+        <tr><td>Gazebo</td><td>Physics simulation with wind and sensor noise</td></tr>
+        <tr><td>MAVProxy / QGroundControl</td><td>Ground station monitoring</td></tr>
+        <tr><td>rosbag</td><td>Data recording and replay</td></tr>
+        <tr><td>OpenCV / NumPy / SciPy</td><td>Calibration and image processing</td></tr>
+      </table>
+    `
+  }
+];
+
+function openDocModal(index) {
+  const modal = document.getElementById('docModal');
+  const data = docData[index];
+  
+  document.getElementById('docModalBg').style.backgroundImage = 'url(' + data.bg + ')';
+  document.getElementById('docModalTag').textContent = data.tag;
+  document.getElementById('docModalTitle').textContent = data.title;
+  document.getElementById('docModalContent').innerHTML = data.content;
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDocModal(event) {
+  const modal = document.getElementById('docModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
 </script>
 </body>
 
